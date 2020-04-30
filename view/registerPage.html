@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmark</title>
+    <link rel="stylesheet" type="text/css" href="../css/registerStyle.css">
+</head>
+<body>
+    <div id="_container" class="container">
+        <div class="logo-wrapper">
+            <img class="logo" src="../img/logo2.png">
+        </div>
+        <div class="register-form">
+            <form @submit.prevent="submitForm">
+                <div class="default">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" id="username" v-model="form.username">
+                    </div>
+                    <div class="form-group">
+                        <label>PW</label>
+                        <input type="password" class="form-control" id="password" v-model="form.password">
+                    </div>
+                    <div class="form-group">
+                        <label>PW 확인</label>
+                        <input type="password" class="form-control" id="password-confirm" v-model="form.passwordconfirm">
+                    </div>
+                    <div class="form-group">
+                        <label>메일</label>
+                        <input type="email" class="form-control" id="emailAddress" v-model="form.emailAddress">
+                    </div>
+                </div>
+                <label class="check-level2">저는 관광지를 운영합니다.</label>
+                <input type="checkbox" class="level2">
+                <div class="level2-form">
+                    <div class="level2-left">
+                        <div class="form-group">
+                            <label>지역</label>
+                            <select id="input-region" class="form-control">
+                                <option selected>... 지역을 선택하세요 ...</option>
+                                <option>서울</option>
+                                <option>인천</option>
+                                <option>대전</option>
+                                <option>대구</option>
+                                <option>광주</option>
+                                <option>부산</option>
+                                <option>울산</option>
+                                <option>세종특별자치시</option>
+                                <option>경기도</option>
+                                <option>강원도</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>분류</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>관광지명</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="level2-right">
+                        <div class="form-group">
+                            <label>URL(옵션)</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
+                                    관광지 등록이 진행됩니다.</textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-green" onclick="location.href='../view/menu.html'">회원가입</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#_container',
+            data: function () {
+                return {
+                    form: {
+                        username: '',
+                        emailAddress: '',
+                        password: '',
+                        passwordconfirm: ''
+                    },
+                    errorMessage: ''
+                }
+            },
+            methods: {
+                submitForm () {
+                    this.$v.$touch()
+                    if (this.$v.$invalid) {
+                        return
+                    }
+
+                    registrationService.register(this.form).then(() => {
+                        this.$router.push({ name: 'LoginPage' })
+                    }).catch((error) => {
+                        this.errorMessage = 'Failed to register user. ' + error.message
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+</html>

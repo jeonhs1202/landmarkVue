@@ -1,0 +1,92 @@
+.container {
+    width: 90vw;
+    height: 90vh;
+    background-color: #CADED1;
+  }
+  
+.logo-wrapper {
+    text-align: center;
+    width: 90vw;
+  }
+
+.logo {
+    width: 300px;
+  }
+  
+.register-form {
+    height: 90vh;
+    text-align: center;
+    width: 90vw;
+  }
+  
+.default {
+    height: 100%;
+    overflow-x: hidden;
+    float: center;
+    margin-left: 20vw;
+    width: 50vw;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-weight: bold;
+    color: #000000;
+    margin-right: 5px;
+  }
+  
+.check-level2 {
+    float: center;
+  }
+  
+.level2 {
+    margin-left: 5px;
+  }
+  
+input[type=checkbox]:checked + .level2-form {
+    width: 90vw;
+    height: 40vh;
+  
+    -ms-transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+  }
+  
+.level2-form {
+    overflow: hidden;
+    height: 0px;
+    margin-left: 25vw;
+    margin-top: 5vh;
+  }
+  
+.level2-left {
+    float: left;
+  }
+  
+.level2-right {
+    float: right;
+    margin-right: 45vw;
+  }
+  
+.notice {
+   float: right;
+   width: 265px;
+   height: 55px;
+   margin-top: 2vh;
+   resize: none;
+   text-align: center;
+   font-weight: bold;
+  }
+  
+.btn-green{
+    background-color: #558967 !important;
+    color: #ffffff;
+    float: center;
+    font-weight: bold;
+    width: 80px;
+    height: 30px;
+  }
