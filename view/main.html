@@ -6,15 +6,22 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/menuStyle.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
 </head>
 <body>
-    <header include-html="header.html"></header>
+    <div id="_header">
+        <header-item v-bind:name="name"></header-item>
+    </div>
+    <div>
+
+    </div>
+    메인페이지
     <footer include-html="footer.html"></footer>
 </body>
 <script>
     includeHTML();
 </script>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
+<script type="text/javascript" src="../js/componentExample.js"></script>
+</html>
