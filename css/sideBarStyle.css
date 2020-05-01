@@ -1,0 +1,45 @@
+a {
+    color: black;
+}
+
+a:hover {
+    color: rgba(246, 255, 204,0.5);
+}
+
+.history {
+    top: 0px; 
+    left: 0px; 
+    width: 15vw; 
+    height: 80vh; 
+    background: #E2EEEB;
+    overflow: hidden;
+  }
+
+.history ul {
+    list-style: none;
+ }
+
+.history ul li { 
+    font-size: 20px;
+    padding-top: 5vh;
+ }
+
+.logo {
+    border: 1px solid #6CAC9D;
+    color: #8DB89B;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    padding-left: 15px;
+    background-color: white;
+    margin-right: 2vw;
+    width: 6vw;
+}
+
+.item {
+    border: none;
+    background-color: white;
+    color: black;
+    width: 8vw;
+    height: 5vh;
+}
