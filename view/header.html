@@ -1,8 +1,9 @@
-Vue.component('menu-item', {
-    template: 
-    `<div class="menuBack">
+<div id="_header" class="menuBack">
+    <div>
         <img src="../img/logo.png" class="logoImg">
-        <button class="menuButton">
+    </div>
+    <div class="buttonBar">
+        <button class="menuButton" onclick="location.href='main.html'">
             <img src="../img/myTravelList.png" class="menuImg">
             내 여행 보기
         </button>
@@ -18,13 +19,18 @@ Vue.component('menu-item', {
             <img src="../img/QnA.png" class="menuImg">
             문의 사항
         </button>
-    </div>`
-  })
-
-var menu = new Vue({
-    el: '#_menu',
-    data: {
-      message: '안녕하세요 hyesun!'
-    }
-  })
-  
+    </div>
+    <div class="login">
+        {{ name }} 님 안녕하세요!
+        <button>
+            마이페이지
+        </button>
+        <button>
+            로그아웃
+        </button>
+    </div>
+    
+</div>
+<link rel="stylesheet" type="text/css" href="../css/menuStyle.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../js/header.js"></script>
