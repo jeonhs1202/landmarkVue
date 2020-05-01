@@ -7,8 +7,10 @@ a:hover {
 }
 
 .history {
-    top: 0px; 
-    left: 0px; 
+    position:fixed;
+    top: 98px; 
+    margin-left: 1px; 
+    bottom: 60px;
     width: 240px; 
     height: 80vh; 
     background: #E2EEEB;

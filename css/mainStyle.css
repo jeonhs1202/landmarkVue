@@ -56,3 +56,12 @@ footer {
     padding-right: 20px;
     float: right;
 }
+.contentPage{
+    top: 90px;
+    bottom: 60px;
+}
+.contentPage1{
+    margin-left: 250px;
+    margin-top: 5px;
+    bottom: 60px;
+}
