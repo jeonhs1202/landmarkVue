@@ -9,9 +9,11 @@
 </head>
 <body>
     <div id="_header">
-        <header-item v-bind:name="name"></header-item>
+        <header-item v-bind:name="name" v-bind:page-num='2'></header-item>
     </div>
-    관광지 검색
+    <div class="whereami">
+        ▷ 관광지 검색
+    </div>
     <footer include-html="footer.html"></footer>
 </body>
 <script>

@@ -9,9 +9,11 @@
 </head>
 <body>
     <div id="_header">
-        <header-item v-bind:name="name"></header-item>
+        <header-item v-bind:name="name" v-bind:page-num='4'></header-item>
     </div>
-    문의사항
+    <div class="whereami">
+        ▷ 문의사항
+    </div>
     <footer include-html="footer.html"></footer>
 </body>
 <script>
