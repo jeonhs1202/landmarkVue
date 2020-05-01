@@ -47,7 +47,7 @@ Vue.component('header-item',{
   var header = new Vue({
     el: '#_header',
     data: {
-        name: '혜선',
+        name: '보현',
     }
     })
   
