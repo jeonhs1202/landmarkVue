@@ -13,7 +13,7 @@
     position: absolute;
     top: 34px;
     left: 260px;
-    width: 90%;
+    width: 800px;
     height: 60px;
 }
 .menuButton{
@@ -41,9 +41,10 @@
 }
 footer {
     position: fixed;
-    left: 0;
+    margin-left: 1px;
+    margin-right: 3px; 
     bottom: 0;
-    width: 100%;
+    width: 99%;
     height: 60px;
     text-align: center;
     font-size: 13px;
