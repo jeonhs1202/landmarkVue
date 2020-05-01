@@ -6,6 +6,7 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
 </head>
 <body>
     <div id="_header">
@@ -14,6 +15,12 @@
     <div class="contentPage">
         <div class="whereami">
             ▷ 문의사항
+        </div>
+        <div id="_left" class="history">
+            <side-bar v-bind:items="history"></side-bar>
+        </div>
+        <div class="contentPage1">
+            fefefegggggggggggggggggggggggggggghggjlhuiijijsisjiosvhspfvhsghvesgh
         </div>
     </div> 
     <footer include-html="footer.html"></footer>
@@ -24,4 +31,5 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
 <script type="text/javascript" src="../js/componentExample.js"></script>
+<script type="text/javascript" src="../js/sideBar.js"></script>
 </html>
