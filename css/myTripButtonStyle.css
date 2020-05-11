@@ -1,0 +1,52 @@
+.btn li {
+    list-style: none;
+}
+
+.btn button {
+    height: 30px;
+    width: 120px;
+}
+
+.odd{
+    margin-left: 200px;
+}
+
+.one {
+    background-color: #FFFFDE;
+}
+
+.two {
+    background-color: #FFFFBA;
+}
+
+.three {
+    background-color: #F9FF96;
+}
+
+.four {
+    background-color: #D5FF72;
+}
+
+.five {
+    background-color: #B1DB4E;
+}
+
+.six {
+    background-color: #8DB72A;
+}
+
+.seven {
+    background-color: #699306;
+}
+
+.eight {
+    background-color: #456F00;
+}
+
+.nine {
+    background-color: #214B00;
+}
+
+.ten {
+    background-color: #002700;
+}
