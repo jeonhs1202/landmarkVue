@@ -1,0 +1,32 @@
+.searchBar{
+    display:table;
+    background-color: rgb(240, 239, 239);
+    height: 60px;
+    width: 800px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 20px;
+}
+.searchBarItem{
+    display: table-cell;
+    text-align: center;
+    vertical-align: center;
+    padding-top: 15px;
+}
+.searchBarItem select{
+    width: 100px;
+    height: 30px;   
+}
+.searchBarItem input{
+    width: 200px;
+    height: 22px;
+    border-radius: 5px 5px 5px 5px;   
+}
+.searchBarItem button{
+    width: 60px;
+    height: 30px;
+    border-radius: 5px 5px 5px 5px;   
+    font-size:15px;
+}
