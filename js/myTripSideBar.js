@@ -1,14 +1,10 @@
 var menu = {
     template: `<ul>
-                    <li>
-                    <div class="logo">My History</div>
-                    </li>
                     <div v-for="item in items">
                         <li>
                         <button class="item">{{ item }}</button>
                         </li>
                     </div>
-                    </li>
                 </ul>`
     ,
     props: ['items']

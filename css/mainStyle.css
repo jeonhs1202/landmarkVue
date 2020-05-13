@@ -66,3 +66,39 @@ footer {
     margin-top: 5px;
     bottom: 60px;
 }
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: rgba(246, 255, 204,0.5);
+}
+
+.history {
+    position:fixed;
+    top: 98px; 
+    margin-left: 1px; 
+    bottom: 60px;
+    width: 240px; 
+    height: 100vh; 
+    background: #E2EEEB;
+    overflow: hidden;
+  }
+
+.history ul {
+    list-style: none;
+ }
+
+.history ul li { 
+    font-size: 20px;
+    padding-top: 5vh;
+ }
+
+.item {
+    border: none;
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 50px;
+}
