@@ -7,6 +7,7 @@
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/myTripListStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/myTripSideBarStyle.css">
 </head>
 <body>
     <div id="_header">
@@ -16,8 +17,8 @@
         <div class="whereami">
             ▷ 내 여행 보기
         </div>
-        <div id="_left" class="history">
-            <side-bar v-bind:items="history"></side-bar>
+        <div id="_left" class="sideBar">
+            <side-bar v-bind:items="content"></side-bar>
         </div>
         <div id="_mytrip" class="contentPage1">
             <my-trip v-bind:triplist="content"></my-trip>

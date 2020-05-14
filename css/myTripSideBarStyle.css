@@ -1,0 +1,27 @@
+.sideBar ul li { 
+    font-size: 20px;
+    padding-top: 30px;
+ }
+
+.item {
+    border: 1.5px solid  #6CAC9D;
+    background-color: white;
+    color: black;
+    width: 200px;
+    height: 100px;
+    padding: 0px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.item:hover {
+    background-color: rgba(246, 255, 204,0.5);
+}
+
+.date {
+    text-align: left;
+    vertical-align: top;
+} 
+
+.name {
+    font-size: 20px;
+}

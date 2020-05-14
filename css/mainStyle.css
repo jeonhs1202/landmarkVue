@@ -75,30 +75,20 @@ a:hover {
     color: rgba(246, 255, 204,0.5);
 }
 
-.history {
+.sideBar {
     position:fixed;
-    top: 98px; 
-    margin-left: 1px; 
+    top: 98px;  
     bottom: 60px;
     width: 240px; 
     height: 100vh; 
     background: #E2EEEB;
     overflow: hidden;
+    margin: 0 auto;
   }
 
-.history ul {
+  .sideBar ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
  }
-
-.history ul li { 
-    font-size: 20px;
-    padding-top: 5vh;
- }
-
-.item {
-    border: none;
-    background-color: white;
-    color: black;
-    width: 150px;
-    height: 50px;
-}

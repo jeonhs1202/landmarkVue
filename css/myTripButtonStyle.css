@@ -3,50 +3,57 @@
 }
 
 .btn button {
+    border: none;
     height: 30px;
     width: 120px;
+    border-radius: 10px 10px 10px 10px;
+    font-weight: bold;
 }
 
-.odd{
-    margin-left: 200px;
+.odd {
+
+}
+
+.even {
+    
 }
 
 .one {
-    background-color: #FFFFDE;
+    background-color: #C9FFBF;
 }
 
 .two {
-    background-color: #FFFFBA;
+    background-color: #D1F4BE;
 }
 
 .three {
-    background-color: #F9FF96;
+    background-color: #D8ECBF;
 }
 
 .four {
-    background-color: #D5FF72;
+    background-color: #DDE3BE;
 }
 
 .five {
-    background-color: #B1DB4E;
+    background-color: #E5DBBF;
 }
 
 .six {
-    background-color: #8DB72A;
+    background-color: #E8D4BE;
 }
 
 .seven {
-    background-color: #699306;
+    background-color: #EFCBBE;
 }
 
 .eight {
-    background-color: #456F00;
+    background-color: #F5C0BE;
 }
 
 .nine {
-    background-color: #214B00;
+    background-color: #FBB6BD;
 }
 
 .ten {
-    background-color: #002700;
+    background-color: #FFAFBD;
 }
