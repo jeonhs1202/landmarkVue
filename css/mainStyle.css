@@ -66,6 +66,105 @@ footer {
     margin-top: 5px;
     bottom: 60px;
 }
+.colortable{
+    position: absolute;
+    left: 260px;
+    bottom: 70px;
+    width: 200px;
+    font-family:"Nanum Gothic";
+    border: 0px solid;
+}
+.colortr{
+    background: linear-gradient(to left, rgb(230, 239, 221),rgb(239, 135, 194));
+}
+
+.plusbutton{
+    position: absolute;
+    right: 10px;
+    bottom: 70px;
+}
+.plusbtn{
+    background-color: rgb(242, 250, 225);
+    border-radius: 30px;
+    color: rgb(163, 180, 161);
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+  }
+
+.modal-container {
+    width: 500px;
+    height: 500px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.model-header{
+    margin-top: 0px;
+    color: #42b983;
+}
+
+.model-table{
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 2px solid rgb(63, 153, 101);
+    margin : 20px 10px;
+}
+
+.modal-table th{
+    width: 60px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: rgb(63, 153, 101);
+    border-right: 1px solid #ccc;
+    border-left: 2px solid rgb(116, 116, 116);
+}
+
+.model-table td{
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.model-save{
+    float: right;
+}
+
+.model-save button{
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffff;
+    color: rgb(129, 168, 146);
+}
 
 a {
     color: black;

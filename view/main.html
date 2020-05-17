@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/mainSideBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/myTripButtonStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css"> <!--메인 화면 css-->
+    <link rel="stylesheet" type="text/css" href="../css/mainSideBarStyle.css"> <!--My History 사이트 버튼 css-->
+    <link rel="stylesheet" type="text/css" href="../css/myTripButtonStyle.css"> <!--지역 버튼 css-->
 </head>
 <body>
     <div id="_header">
@@ -23,7 +23,18 @@
         </div>
         <div id="_mybutton" class="contentPage1">
             <my-button v-bind:citylist="citybuttonsort"></my-button>
-        </div>       
+        </div>  
+        <div class="colortable">
+            <table>
+                <tr>빈도수</tr>
+                <tr class="colortr"><td>10 + &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1</td></tr>
+            </table>
+        </div>
+        <div id="_addmytrip" class="plusbutton">
+            <button class="plusbtn" id="show-modal" @click="showModal = true">
+             여행지 추가</button>
+             <modal v-if="showModal" @close="showModal = false"></modal>
+        </div>
     </div>
      
     <footer include-html="footer.html"></footer>
@@ -35,4 +46,5 @@
 <script type="text/javascript" src="../js/header.js"></script>
 <script type="text/javascript" src="../js/mainSideBar.js"></script>
 <script type="text/javascript" src="../js/myTripButton.js"></script>
+<script type="text/javascript" src="../js/addMyTrip.js"></script>
 </html>
