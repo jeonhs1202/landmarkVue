@@ -1,13 +1,20 @@
+.btn {
+    width: 800px;
+    height: 1000px;
+}
+
 .btn li {
     list-style: none;
 }
 
 .btn button {
-    border: none;
-    height: 30px;
-    width: 120px;
+    border: 1px solid rgb(189, 189, 189);
+    height: 50px;
+    width: 140px;
+    float: left;
     border-radius: 10px 10px 10px 10px;
-    font-weight: bold;
+    font-size : 18px;
+    margin : 10px;
 }
 
 .odd {
@@ -19,41 +26,41 @@
 }
 
 .one {
-    background-color: #C9FFBF;
+    background-color: rgb(230, 239, 221);
 }
 
 .two {
-    background-color: #D1F4BE;
+    background-color: rgb(235, 238, 218);
 }
 
 .three {
-    background-color: #D8ECBF;
+    background-color: rgb(239, 229, 217);
 }
 
 .four {
-    background-color: #DDE3BE;
+    background-color: rgb(242, 221, 216);
 }
 
 .five {
-    background-color: #E5DBBF;
+    background-color: rgb(242, 214, 214);
 }
 
 .six {
-    background-color: #E8D4BE;
+    background-color: rgb(244, 199, 210);
 }
 
 .seven {
-    background-color: #EFCBBE;
+    background-color: rgb(243, 189, 207);
 }
 
 .eight {
-    background-color: #F5C0BE;
+    background-color: rgb(243, 172, 204);
 }
 
 .nine {
-    background-color: #FBB6BD;
+    background-color: rgb(241, 157, 199);
 }
 
 .ten {
-    background-color: #FFAFBD;
+    background-color: rgb(239, 135, 194);
 }
