@@ -1,35 +1,35 @@
+var menu = {
+    template: `<ul>
+                    <div v-for="item in items">
+                        <li>
+                        <button class="item" v-on:click="passData(item.id, $event)">
+                            <div class="date">{{ item.createdTime }}</div>
+                            <div class="name">{{ item.addr1 }}</div>
+                        </button>
+                        </li>
+                    </div>
+                </ul>`
+    ,
+    props: ['items'],
+    methods: {
+        passData: function(id, event) {
+            if(event)
+                this.$emit('pass', id);
+        }
+    }
+}
+
 var trip = {
     template: `<div class="travel">
                     <li v-for="trip in triplist">
-                        <img v-if="trip.firstImage2 == null" src="../img/temptrip.jpg" class="tripImg">
-                        <button>{{ trip.title }}</button>
+                        <div v-if="tripid===trip.id">
+                            <img v-if="trip.firstImage2 == null" src="../img/temptrip.jpg" class="tripImg">
+                            <button >{{ trip.title }}</button>
+                        </div>
                     </li>
                 </div>`
     ,
-    props: {
-        triplist: {
-            id: null,
-            userId: null,
-            addr1: null,
-            addr2: null,
-            areaCode: null,
-            sigunguCode: null,
-            cat1: null,
-            cat2: null,
-            cat3: null,
-            contentId: null,
-            contentTypeId: null,
-            tel: null,
-            title: null,
-            overview: null,
-            createdTime: null,
-            modifiedTime: null,
-            firstImage: null,
-            firstImage2: null,
-            homepage: null,
-            readCount: null
-        }
-    }
+    props: ['triplist', 'tripid']
 }
 
 var myTrip = new Vue({
@@ -80,9 +80,16 @@ var myTrip = new Vue({
                 homepage: null,
                 readCount: 0
             }
-        ]
+        ],
+        itemId: ""
     },
     components: {
+        'side-bar': menu,
         'my-trip': trip
+    },
+    methods: {
+        showMyTrip: function(value){
+            this.itemId = value;
+        }
     }
 })

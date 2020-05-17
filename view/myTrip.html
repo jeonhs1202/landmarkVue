@@ -6,8 +6,7 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/myTripListStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/myTripSideBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/myTripStyle.css">
 </head>
 <body>
     <div id="_header">
@@ -17,11 +16,13 @@
         <div class="whereami">
             ▷ 내 여행 보기
         </div>
-        <div id="_left" class="sideBar">
-            <side-bar v-bind:items="content"></side-bar>
-        </div>
-        <div id="_mytrip" class="contentPage1">
-            <my-trip v-bind:triplist="content"></my-trip>
+        <div id="_mytrip">
+            <div class="sideBar">
+                <side-bar v-bind:items="content" v-on:pass="showMyTrip"></side-bar>
+            </div>
+            <div class="contentPage1">
+                <my-trip v-bind:triplist="content" v-bind:tripid="itemId"></my-trip>
+            </div>
         </div>       
     </div>
     <footer include-html="footer.html"></footer>
@@ -31,6 +32,5 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
-<script type="text/javascript" src="../js/myTripSideBar.js"></script>
 <script type="text/javascript" src="../js/myTrip.js"></script>
 </html>
