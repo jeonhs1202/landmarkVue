@@ -20,32 +20,8 @@
         <div class="sideBar">
         </div>
         <div id="_searchPage" class="contentPage1">
-            {{name}}
-            <div class="searchBar">
-                <div class="searchBarItem">
-                    <select v-model="landMarkType">
-                        <option disabled value="">관광지 타입</option>
-                        <option>바다</option>
-                        <option>산</option>
-                        <option>숙소</option>
-                    </select>
-                    <select v-model="city">
-                        <option disabled value="">대분류</option>
-                        <option>서울특별시</option>
-                        <option>경기도</option>
-                        <option>강원도</option>
-                    </select>
-                    <select v-model="country">
-                        <option disabled value="">세부 분류</option>
-                        <option>강북구</option>
-                        <option>노원구</option>
-                        <option>강원도</option>
-                    </select>
-                    
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button>검색</button>
-                </div>               
-            </div>
+            <search-bar v-bind:land-mark-type="landMarkType" v-bind:city="city" v-bind:country="country"
+             v-on:city="cityset" v-on:type="typeset" v-on:country="countryset"></search-bar>
             {{city}} {{country}}에 있는 {{landMarkType}}을 검색합니다.
         </div>       
     </div>   
