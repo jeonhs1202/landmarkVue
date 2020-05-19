@@ -6,20 +6,20 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/myLandmarkStyle.css">
 </head>
 <body>
     <div id="_header">
         <header-item v-bind:name="name" v-bind:page-num='3'></header-item>
     </div>
-    <div class="contentPage">
+    <div class="landmarkcontentPage">
         <div class="whereami">
             ▷ 내 관광지 관리
         </div>
         <div class="sideBar">
         </div>
-        <div class="contentPage1">
-            fefefegggggggggggggggggggggggggggghggjlhuiijijsisjiosvhspfvhsghvesgh
+        <div id="_mylandmark" class="landmarkContent">
+            <my-landmark></my-landmark>
         </div>
     </div>
     <footer include-html="footer.html"></footer>
@@ -29,5 +29,5 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
-<script type="text/javascript" src="../js/componentExample.js"></script>
+<script type="text/javascript" src="../js/myLandmark.js"></script>
 </html>

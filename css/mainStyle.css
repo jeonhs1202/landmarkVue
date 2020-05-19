@@ -175,7 +175,7 @@ a:hover {
 }
 
 .sideBar {
-    position:fixed;
+    position: absolute;
     top: 98px;  
     bottom: 60px;
     width: 240px; 
