@@ -3,6 +3,7 @@ Vue.component('searchBar',{
         landMarkType: String,
         city: String,
         country: String,
+        val: String,
     },
     template: 
     `<div class="searchBar">
@@ -26,16 +27,17 @@ Vue.component('searchBar',{
                 <option>강원도</option>
             </select>
             
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button v-on:click="passData(landMarkType, city, country)">검색</button>
+            <input type="text" v-model="val" placeholder="검색어를 입력하세요">
+            <button v-on:click="passData(landMarkType, city, country, val)">검색</button>
         </div>
     </div>`,
     methods:{
-        passData: function(type, city, country) {
+        passData: function(type, city, country, val) {
             if(event)
                 this.$emit('type', type);
                 this.$emit('city', city);
                 this.$emit('country', country);
+                this.$emit('val', val);
         }
     }
 })
@@ -49,6 +51,7 @@ var searchPgage = new Vue({
         city: '',
         country: '',
         landMarkType: '',
+        val: '',
     },
     methods:{
         typeset: function(value){
@@ -60,5 +63,8 @@ var searchPgage = new Vue({
         countryset: function(value){
             this.country = value;
         },
+        valset: function(value){
+            this.val = value;
+        }
     }
     })

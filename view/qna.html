@@ -7,6 +7,7 @@
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/searchPageStyle.css">
 </head>
 <body>
     <div id="_header">
@@ -18,8 +19,10 @@
         </div>
         <div class="sideBar">
         </div>
-        <div class="contentPage1">
-            fefefegggggggggggggggggggggggggggghggjlhuiijijsisjiosvhspfvhsghvesgh
+        <div id="qna" class="contentPage1">
+            <qnabar v-bind:type="type" v-bind:who="who" v-bind:what="what"
+            v-on:type="typeset" v-on:who="whoset" v-on:what="whatset"></qnabar>
+            {{type}} {{who}}에 있는 {{what}}을 검색합니다.
         </div>
     </div> 
     <footer include-html="footer.html"></footer>
@@ -29,5 +32,5 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
-<script type="text/javascript" src="../js/componentExample.js"></script>
+<script type="text/javascript" src="../js/qna.js"></script>
 </html>

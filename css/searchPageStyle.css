@@ -2,7 +2,18 @@
     display:table;
     background-color: rgb(240, 239, 239);
     height: 60px;
-    width: 800px;
+    width: 700px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 20px;
+}
+.searchBar2{
+    display:table;
+    background-color: rgb(240, 239, 239);
+    height: 60px;
+    width: 600px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
