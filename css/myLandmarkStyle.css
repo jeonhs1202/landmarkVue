@@ -15,33 +15,40 @@
 }
 
 .btnArea button{
-    border: 1.25px solid #c1dfc4;
+    font-size: 18px;
     font-weight: bold;
     padding: 5px;
     outline: none;
+    width: 150px;
 }
 
 .btn1 {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: -4px;
     border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border: 5px solid #97af99;
 }
 .btn2 {
-    margin-top: 10px;
-    margin-left: -3px;
+    margin-top: 20px;
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .click {
     color: white;
     background-color: #c1dfc4;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1.5px solid #97af99;
+    border-bottom: none;
 }
 
 .non {
     color: #c1dfc4;
     background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1.25px solid #c1dfc4;
+    border-bottom: none;
 }
 
 .adminContent {
@@ -50,4 +57,8 @@
     height: 490px;
     background-color: #deecdd;
     padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1.5px solid #97af99;
 }
