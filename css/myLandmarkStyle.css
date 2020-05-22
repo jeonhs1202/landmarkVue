@@ -1,35 +1,53 @@
 .landmarkContent{
     margin-left: 240px;
+    margin-right: 40px;
     height: 100vh;
-    overflow: hidden;
 }
 
 .landmarkcontentPage{
     top: 90px;
     bottom: 60px;
-    background-color: #E9EEE3;
 }
 
-.btnArea {
+.btnArea{
     display: inline;
     margin-left: 50px;
 }
 
-.btn {
+.btnArea button{
+    border: 1.25px solid #c1dfc4;
+    font-weight: bold;
+    padding: 5px;
+    outline: none;
+}
+
+.btn1 {
     margin-top: 10px;
-    padding: 10px;
-    border-radius: 20px 20px 20px 20px;
-    border-style: none;
-    background-color: white;
+    margin-right: -4px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.btn2 {
+    margin-top: 10px;
+    margin-left: -3px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .click {
-    background-color: #D3DDC9;
+    color: white;
+    background-color: #c1dfc4;
+}
+
+.non {
+    color: #c1dfc4;
+    background-color: white;
 }
 
 .adminContent {
-    margin-top: 10px;
+    margin-top: 1px;
     margin-left: 50px;
     height: 490px;
-    background-color: white;
+    background-color: #deecdd;
+    padding: 10px;
 }

@@ -19,7 +19,7 @@
         <div class="sideBar">
         </div>
         <div id="_mylandmark" class="landmarkContent">
-            <my-landmark></my-landmark>
+            <my-landmark v-bind:rv="review" v-bind:lm="landmark" v-bind:content="pass" v-on:click="whichBtn"></my-landmark>
         </div>
     </div>
     <footer include-html="footer.html"></footer>
