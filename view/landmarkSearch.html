@@ -20,8 +20,10 @@
         <div class="sideBar">
         </div>
         <div id="_searchPage" class="contentPage1">
-            <search-bar v-bind:land-mark-type="landMarkType" v-bind:city="city" v-bind:country="country" v-bind:val="val"
+            <search-bar v-bind:land-mark-type="landMarkType" 
+            v-bind:city="city" v-bind:country="country" v-bind:val="val" v-bind:citylist="citylist"
              v-on:city="cityset" v-on:type="typeset" v-on:country="countryset" v-on:val="valset"></search-bar>
+             {{citylist}}
             {{city}}, {{country}}, {{landMarkType}}, {{val}}을 검색합니다.
         </div>       
     </div>   
@@ -31,6 +33,7 @@
     includeHTML();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
 <script type="text/javascript" src="../js/searchPage.js"></script>
 </html>

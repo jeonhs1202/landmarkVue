@@ -2,8 +2,9 @@ Vue.component('searchBar',{
     props:{
         landMarkType: String,
         city: String,
+        citylist: JSON,
         country: String,
-        val: String,
+        val: String
     },
     template: 
     `<div class="searchBar">
@@ -16,9 +17,7 @@ Vue.component('searchBar',{
             </select>
             <select v-model="city">
                 <option disabled value="">대분류</option>
-                <option>서울특별시</option>
-                <option>경기도</option>
-                <option>강원도</option>
+                <option v-for:"cit in citylist">{{cit.name}}</option>
             </select>
             <select v-model="country">
                 <option disabled value="">세부 분류</option>
@@ -49,10 +48,20 @@ var searchPgage = new Vue({
     data: {
         name: '보현',
         city: '',
+        citylist: JSON,
         country: '',
         landMarkType: '',
-        val: '',
+        val: ''
     },
+    created:
+        function() {
+            axios.get('http://49.50.161.45:8080/code/area')
+                .then(res => {
+                    this.citylist = (res.data);
+                    console.log(this.citylist);
+                });
+        }
+    ,
     methods:{
         typeset: function(value){
             this.landMarkType = value;
@@ -65,6 +74,13 @@ var searchPgage = new Vue({
         },
         valset: function(value){
             this.val = value;
+        },
+        citysend: function () {
+            axios.get('http://49.50.161.45:8080/code/area')
+                .then(res => {
+                    this.cityList = res.data;
+                    console.log(this.cityList);
+                })
         }
-    }
+    },
     })
