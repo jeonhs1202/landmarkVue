@@ -9,13 +9,16 @@ var city = {
         citylist: {
             name: '',
             level: ''
-        }
+        },
+    },
+    methods: {
     }
 }
 
 var myButton = new Vue({
     el: '#_mybutton',
     data: {
+        posts:[],
           citybutton: [
             {name: '서울', level: 'a'}, 
             {name: '인천', level: 'b'},
@@ -47,5 +50,14 @@ var myButton = new Vue({
     components: {
         'my-button': city
     },
-    
+    methods:{
+        citysend:function(){
+            axios.get('http://49.50.161.45:8080/code/area') 
+                .then(res => { 
+                    this.posts = res.data;
+                    console.log(this.posts);
+                })
+        },
+
+    },
 })

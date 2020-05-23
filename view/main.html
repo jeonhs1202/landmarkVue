@@ -22,7 +22,8 @@
             <side-bar v-bind:items="history"></side-bar>
         </div>
         <div id="_mybutton" class="contentPage1">
-            <my-button v-bind:citylist="citybuttonsort"></my-button>
+            <my-button v-bind:citylist="citybuttonsort" v-bind:posts="posts"></my-button>
+            <button @click="citysend">날려</button>
         </div>  
         <div class="colortable">
             <table>
@@ -42,6 +43,7 @@
 <script>
     includeHTML();
 </script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
 <script type="text/javascript" src="../js/mainSideBar.js"></script>
