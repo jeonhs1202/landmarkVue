@@ -20,11 +20,10 @@
         <div class="sideBar">
         </div>
         <div id="_searchPage" class="contentPage1">
-            <search-bar v-bind:land-mark-type="landMarkType" 
+            <search-bar v-bind:land-mark-type="landMarkType" v-bind:contentlist="contentlist" v-bind:sigungulist="sigungulist"
             v-bind:city="city" v-bind:country="country" v-bind:val="val" v-bind:citylist="citylist"
              v-on:city="cityset" v-on:type="typeset" v-on:country="countryset" v-on:val="valset"></search-bar>
-             {{citylist}}
-            {{city}}, {{country}}, {{landMarkType}}, {{val}}을 검색합니다.
+            {{city.name}}, {{country}}, {{landMarkType}}, {{val}}을 검색합니다.
         </div>       
     </div>   
     <footer include-html="footer.html"></footer>

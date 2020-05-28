@@ -1,8 +1,10 @@
-Vue.component('searchBar',{
+var searchBar = {
     props:{
         landMarkType: String,
         city: String,
-        citylist: JSON,
+        contentlist: { contentTypeId: '', name: '' },
+        citylist: { code: '', name: '' },
+        sigungulist: { areaCode: '', code: '', name: '' },
         country: String,
         val: String
     },
@@ -11,19 +13,15 @@ Vue.component('searchBar',{
         <div class="searchBarItem">
             <select v-model="landMarkType">
                 <option disabled value="">관광지 타입</option>
-                <option>바다</option>
-                <option>산</option>
-                <option>숙소</option>
+                <option v-for="content in contentlist">{{ content.name }}</option>
             </select>
             <select v-model="city">
-                <option disabled value="">대분류</option>
-                <option v-for:"cit in citylist">{{cit.name}}</option>
+                <option disabled value="">지역</option>
+                <option v-for="cit in citylist" v-bind:value="cit">{{ cit.name }}</option>
             </select>
             <select v-model="country">
-                <option disabled value="">세부 분류</option>
-                <option>강북구</option>
-                <option>노원구</option>
-                <option>강원도</option>
+                <option disabled value="">시군구</option>
+                <option v-for="sigungu in sigungulist" v-if="city.code == sigungu.areaCode">{{ sigungu.name }}</option>
             </select>
             
             <input type="text" v-model="val" placeholder="검색어를 입력하세요">
@@ -39,7 +37,7 @@ Vue.component('searchBar',{
                 this.$emit('val', val);
         }
     }
-})
+}
 
 
 
@@ -48,21 +46,33 @@ var searchPgage = new Vue({
     data: {
         name: '보현',
         city: '',
-        citylist: JSON,
+        contentlist: [],
+        citylist: [],
+        sigungulist: [],
         country: '',
         landMarkType: '',
         val: ''
     },
-    created:
-        function() {
-            axios.get('http://49.50.161.45:8080/code/area')
-                .then(res => {
-                    this.citylist = (res.data);
-                    console.log(this.citylist);
-                });
+    created: function() {
+        const baseURI = 'http://49.50.161.45:8080/code'
+        axios.get(`${baseURI}/content-type`)
+            .then(res => {
+                this.contentlist = (res.data);
+                console.log(this.contentlist);
+            });
+        axios.get(`${baseURI}/area`)
+            .then(res => {
+                this.citylist = (res.data);
+                console.log(this.citylist);
+            });
+        axios.get(`${baseURI}/sigungu`)
+            .then(res => {
+                this.sigungulist = (res.data);
+                console.log(this.sigungulist);
+            });
         }
     ,
-    methods:{
+    methods: {
         typeset: function(value){
             this.landMarkType = value;
         },
@@ -74,13 +84,9 @@ var searchPgage = new Vue({
         },
         valset: function(value){
             this.val = value;
-        },
-        citysend: function () {
-            axios.get('http://49.50.161.45:8080/code/area')
-                .then(res => {
-                    this.cityList = res.data;
-                    console.log(this.cityList);
-                })
         }
     },
-    })
+    components: {
+        'search-bar': searchBar
+    }
+})
