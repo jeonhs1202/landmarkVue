@@ -48,6 +48,31 @@ Vue.component('modal', {
 var addMyButton = new Vue({
     el: '#_addmytrip',
     data: {
+        city: '',
+        citylist: [],
+        sigungu: '',
+        sigungulist: [],
         showModal: false
-    }
+    },
+    created: function() {
+        const baseURI = 'http://49.50.161.45:8080/code'
+        axios.get(`${baseURI}/area`)
+            .then(res => {
+                this.citylist = (res.data);
+                console.log(this.citylist);
+            });
+        axios.get(`${baseURI}/sigungu`)
+            .then(res => {
+                this.sigungulist = (res.data);
+                console.log(this.sigungulist);
+            });
+        },
+        methods: {
+            cityset: function(value){
+                this.city = value;
+            },
+            countryset: function(value){
+                this.sigungu = value;
+            },
+        }
 })

@@ -24,6 +24,7 @@
         <div id="_mybutton" class="contentPage1">
             <my-button v-bind:citylist="citybuttonsort" v-bind:posts="posts"></my-button>
             <button @click="citysend">날려</button>
+            <p v-for="post in posts">{{post.name}}</p>
         </div>  
         <div class="colortable">
             <table>

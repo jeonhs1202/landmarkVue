@@ -6,6 +6,7 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/qna.css">
     <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/searchPageStyle.css">
 </head>
@@ -20,9 +21,15 @@
         <div class="sideBar">
         </div>
         <div id="qna" class="contentPage1">
-            <qnabar v-bind:type="type" v-bind:who="who" v-bind:what="what"
-            v-on:type="typeset" v-on:who="whoset" v-on:what="whatset"></qnabar>
-            {{type}} {{who}}에 있는 {{what}}을 검색합니다.
+            <qna-bar v-bind:type="type" v-bind:who="who" v-bind:what="what" v-bind:typelist="typelist"
+            v-on:type="typeset" v-on:who="whoset" v-on:what="whatset"></qna-bar>
+            {{type}} {{who}}에 있는 {{what}}을 검색합니다.            
+            <div class="createbutton">
+                <button id="show-modal" class="createbtn" @click="showModal = true">
+                작성하기</button>
+                <add-qna v-bind:typelist="typelist" 
+                    v-if="showModal" @close="showModal = false"></add-qna>
+            </div>
         </div>
     </div> 
     <footer include-html="footer.html"></footer>
