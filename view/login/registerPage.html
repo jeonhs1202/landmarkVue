@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landmark</title>
-    <link rel="stylesheet" type="text/css" href="/css/registerStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/registerPage.css">
 </head>
 <body>
     <div id="_container" class="container">
@@ -30,53 +30,53 @@
                         <label>메일</label>
                         <input type="email" class="form-control" id="emailAddress" v-model="form.emailAddress">
                     </div>
-                </div>
-                <label class="check-level2">저는 관광지를 운영합니다.</label>
-                <input type="checkbox" class="level2">
-                <div class="level2-form">
-                    <div class="level2-left">
-                        <div class="form-group">
-                            <label>지역</label>
-                            <select id="input-region" class="form-control">
-                                <option selected>... 지역을 선택하세요 ...</option>
-                                <option>서울</option>
-                                <option>인천</option>
-                                <option>대전</option>
-                                <option>대구</option>
-                                <option>광주</option>
-                                <option>부산</option>
-                                <option>울산</option>
-                                <option>세종특별자치시</option>
-                                <option>경기도</option>
-                                <option>강원도</option>
-                            </select>
+                    <div class="level2">
+                        <label>저는 관광지를 운영합니다.</label>
+                        <input type="checkbox">
+                    </div>
+                    <div class="level2-form">
+                        <div class="level2-left">
+                            <div class="form-group">
+                                <label>지역</label>
+                                <select v-model="city">
+                                    <option disabled value="">지역</option>
+                                    <option v-for="metro in metropolis" v-bind:value="metro">{{ metro.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>시군구</label>
+                                <select v-model="town">
+                                    <option disabled value="">시군구</option>
+                                    <option v-for="sigungu in sigungulist" v-if="city.code == sigungu.areaCode">{{ sigungu.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>관광지 타입</label>
+                                <select v-model="landmarkType">
+                                    <option disabled value="">관광지 타입</option>
+                                    <option v-for="content in contentlist">{{ content.name }}</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>분류</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>관광지명</label>
-                            <input type="text" class="form-control">
+                        <div class="level2-right">
+                            <div class="form-group">
+                                <label>URL(옵션)</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
+                                        관광지 등록이 진행됩니다.</textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="level2-right">
-                        <div class="form-group">
-                            <label>URL(옵션)</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
-                                    관광지 등록이 진행됩니다.</textarea>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-green" onclick="location.href='./loginPage.html'">회원가입</button>
                 </div>
-                <button type="submit" class="btn btn-green" onclick="location.href='/view/main.html'">회원가입</button>
             </form>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         new Vue({
             el: '#_container',
@@ -88,8 +88,32 @@
                         password: '',
                         passwordconfirm: ''
                     },
-                    errorMessage: ''
+                    errorMessage: '',
+                    contentlist: [],
+                    metropolis: [],
+                    sigungulist: [],
+                    landmarkType: '',
+                    city: '',
+                    town: ''
                 }
+            },
+            created: function () {
+                const baseURI = 'http://49.50.161.45:8080/code'
+                axios.get(`${baseURI}/content-type`)
+                    .then(res => {
+                        this.contentlist = (res.data);
+                        console.log(this.contentlist);
+                    });
+                axios.get(`${baseURI}/area`)
+                    .then(res => {
+                        this.metropolis = (res.data);
+                        console.log(this.metropolis);
+                    });
+                axios.get(`${baseURI}/sigungu`)
+                    .then(res => {
+                        this.sigungulist = (res.data);
+                        console.log(this.sigungulist);
+                    });
             },
             methods: {
                 submitForm () {

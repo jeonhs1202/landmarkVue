@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landmark</title>
-    <link rel="stylesheet" type="text/css" href="/css/loginStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/loginPage.css">
 </head>
 <body>
     <div id="container" class="container">
@@ -24,13 +24,14 @@
                         <label>PW</label>
                         <input type="password" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-green" onclick="location.href='/view/main.html'">Log in</button>
+                    <button type="submit" class="btn btn-green" v-on:click="tryLogin">Log in</button>
                     <a href="./registerPage.html">Sign in</a>
                 </form>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         new Vue({
             el: '#container',
@@ -40,21 +41,25 @@
                         username: '',
                         password: ''
                     },
-                    errorMessage: ''
+                    errorMessage: '',
+                    userInfo: []
                 }
             },
             methods: {
-                submitForm () {
-                    this.$v.$touch()
-                    if (this.$v.$invalid) {
-                        return
-                    }
-                    authenticationService.authenticate(this.form).then(() => {
-                        this.$router.push({name: 'menu'})
-                        this.$bus.$emit('authenticated')
-                        notify.closeAll()
-                    }).catch((error) => {
-                        this.errorMessage = error.message
+                submitForm: function() {
+                },
+                tryLogin: function() {
+                    axios.post('http://49.50.161.45:8080/login', {
+                        username: 'bh',
+                        password: 'bh1234'
+                    }, {
+                        headers: {
+                            Authorrization: 
+                        }
+                    })
+                    .then(res => {
+                        this.userInfo = res.data;
+                        console.log(this.userInfo);
                     })
                 }
             }

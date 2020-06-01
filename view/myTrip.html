@@ -6,7 +6,7 @@
     <title>LandMark</title>
     <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/myTripStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/myTrip.css">
 </head>
 <body>
     <div id="_header">
@@ -21,7 +21,7 @@
                 <side-bar v-bind:items="content" v-on:pass="showMyTrip"></side-bar>
             </div>
             <div class="contentPage1">
-                <my-trip v-bind:triplist="content" v-bind:tripid="itemId"></my-trip>
+                <my-trip v-bind:triplist="content" v-bind:tripid="[itemId]"></my-trip>
             </div>
         </div>       
     </div>

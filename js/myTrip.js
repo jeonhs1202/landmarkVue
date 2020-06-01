@@ -81,7 +81,7 @@ var myTrip = new Vue({
                 readCount: 0
             }
         ],
-        itemId: ""
+        itemId: 0
     },
     components: {
         'side-bar': menu,
