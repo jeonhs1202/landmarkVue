@@ -18,7 +18,7 @@
         </div>
         <div id="_mytrip">
             <div class="sideBar">
-                <side-bar v-bind:items="content" v-on:pass="showMyTrip"></side-bar>
+                <side-bar v-bind:items="content" v-bind:btnid="itemId" v-on:pass="showMyTrip"></side-bar>
             </div>
             <div class="contentPage1">
                 <my-trip v-bind:triplist="content" v-bind:tripid="itemId"></my-trip>

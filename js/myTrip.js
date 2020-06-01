@@ -2,7 +2,7 @@ var menu = {
     template: `<ul>
                     <div v-for="item in items">
                         <li>
-                        <button class="item" v-on:click="passData(item.id, $event)">
+                        <button class="item" v-bind:class="[btnid== item.id ? 'clicked' : '']" v-on:click="passData(item.id, $event)">
                             <div class="date">{{ item.createdTime }}</div>
                             <div class="name">{{ item.addr1 }}</div>
                         </button>
@@ -10,7 +10,7 @@ var menu = {
                     </div>
                 </ul>`
     ,
-    props: ['items'],
+    props: ['items', 'btnid'],
     methods: {
         passData: function(id, event) {
             if(event)
@@ -88,7 +88,6 @@ var myTrip = new Vue({
         if (uri.length == 2) {
             let vars = uri[1].split('=');
             this.itemId = parseInt(vars[1]);
-            console.log(this.itemId);
         }
     },
     components: {
