@@ -18,10 +18,10 @@
         </div>
         <div id="_mytrip">
             <div class="sideBar">
-                <side-bar v-bind:items="content" v-on:pass="showMyTrip"></side-bar>
+                <side-bar v-bind:items="content" v-bind:btnid="itemId" v-on:pass="showMyTrip"></side-bar>
             </div>
             <div class="contentPage1">
-                <my-trip v-bind:triplist="content" v-bind:tripid="[itemId]"></my-trip>
+                <my-trip v-bind:triplist="content" v-bind:tripid="itemId"></my-trip>
             </div>
         </div>       
     </div>
@@ -30,6 +30,7 @@
 <script>
     includeHTML();
 </script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
 <script type="text/javascript" src="../js/myTrip.js"></script>

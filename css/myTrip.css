@@ -40,6 +40,10 @@
     border-radius: 10px 10px 10px 10px;
 }
 
+.clicked {
+    background-color: rgba(246, 255, 204,0.5);
+}
+
 .item:hover {
     background-color: rgba(246, 255, 204,0.5);
 }

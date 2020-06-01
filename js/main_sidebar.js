@@ -5,7 +5,7 @@ var menu = {
                     </li>
                     <div v-for="item in items">
                         <li>
-                        <a v-bind:href="'myTrip.html'"><button class="item">{{ item.addr1 }}
+                        <a v-bind:href="'myTrip.html?id='+item.id"><button class="item">{{ item.addr1 }}
                         <img v-if="item.firstImage2 == null" src="../img/temptrip.jpg" class="itemImg">
                         </button></a>
                         </li>
