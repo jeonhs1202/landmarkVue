@@ -83,6 +83,14 @@ var myTrip = new Vue({
         ],
         itemId: 0
     },
+    created: function(){
+        let uri = window.location.href.split('?');
+        if (uri.length == 2) {
+            let vars = uri[1].split('=');
+            this.itemId = parseInt(vars[1]);
+            console.log(this.itemId);
+        }
+    },
     components: {
         'side-bar': menu,
         'my-trip': trip
