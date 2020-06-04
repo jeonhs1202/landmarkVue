@@ -19,25 +19,22 @@ var myButton = new Vue({
     el: '#_mybutton',
     data: {
         posts:[],
-          citybutton: [
-            {name: '서울', level: 'a'}, 
-            {name: '인천', level: 'b'},
-            {name: '대전', level: 'c'}, 
-            {name: '대구', level: 'd'}, 
-            {name: '광주', level: 'e'}, 
-            {name: '부산', level: 'f'}, 
-            {name: '울산', level: 'g'}, 
-            {name: '세종특별자치시', level: 'h'},
-            {name: '경기도', level: 'i'}, 
-            {name: '강원도', level: 'j'}, 
-            {name: '충청북도', level: 'i'}, 
-            {name: '충청남도', level: 'h'}, 
-            {name: '경상북도', level: 'g'}, 
-            {name: '경상남도', level: 'f'}, 
-            {name: '전라북도', level: 'e'}, 
-            {name: '전라남도', level: 'd'}, 
-            {name: '제주도', level: 'c'}
-        ]      
+        citybutton: []      
+    },
+    created: function() {
+        const baseURI = 'http://49.50.161.45:8080/review/count'
+        axios.get(`${baseURI}`,{
+            headers: {
+                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI4NzYwNH0.9DV_udUgeaQVOh3VVV0zEoDOhJ64fdZDP0WlRnKcjS4bkHtUvJ7c4NPVIG_dxSyXxtZoFArL5J_KSsoXQx7Xhw'
+            }
+        })
+        .then(res => { 
+            this.posts = res.data;
+            for(var i in this.posts){
+                this.count2level(this.posts[i].name,this.posts[i].count);
+            }
+            // console.log(this.posts[0].count);
+            });
     },
     computed: {
         citybuttonsort : function() {
@@ -51,13 +48,39 @@ var myButton = new Vue({
         'my-button': city
     },
     methods:{
-        citysend:function(){
-            axios.get('http://49.50.161.45:8080/code/area') 
-                .then(res => { 
-                    this.posts = res.data;
-                    console.log(this.posts);
-                })
-        },
-
-    },
+        count2level:function (cityname, count) {
+            switch (count) {
+                case 0:
+                    this.citybutton.push({name: cityname, level: 'a'});
+                    break;
+                case 1:
+                    this.citybutton.push({name: cityname, level: 'b'});
+                    break;
+                case 2:
+                    this.citybutton.push({name: cityname, level: 'c'});
+                    break;
+                case 3:
+                    this.citybutton.push({name: cityname, level: 'd'});
+                    break;
+                case 4:
+                    this.citybutton.push({name: cityname, level: 'e'});
+                    break;
+                case 5:
+                    this.citybutton.push({name: cityname, level: 'f'});
+                    break;
+                case 6:
+                    this.citybutton.push({name: cityname, level: 'g'});
+                    break;
+                case 7:
+                    this.citybutton.push({name: cityname, level: 'h'});
+                    break;
+                case 8:
+                    this.citybutton.push({name: cityname, level: 'i'});
+                    break;
+                default:
+                    this.citybutton.push({name: cityname, level: 'j'});
+                    break;
+            }
+        }
+    }
 })

@@ -59,12 +59,12 @@ var addMyButton = new Vue({
         axios.get(`${baseURI}/area`)
             .then(res => {
                 this.citylist = (res.data);
-                console.log(this.citylist);
+                // console.log(this.citylist);
             });
         axios.get(`${baseURI}/sigungu`)
             .then(res => {
                 this.sigungulist = (res.data);
-                console.log(this.sigungulist);
+                // console.log(this.sigungulist);
             });
         },
         methods: {

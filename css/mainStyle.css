@@ -39,7 +39,7 @@
     right: 20px;
     overflow: hidden;
 }
-footer {
+.footerCss {
     position: fixed;
     margin-left: 1px;
     margin-right: 3px; 

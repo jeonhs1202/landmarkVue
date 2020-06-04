@@ -58,17 +58,17 @@ var searchPgage = new Vue({
         axios.get(`${baseURI}/content-type`)
             .then(res => {
                 this.contentlist = (res.data);
-                console.log(this.contentlist);
+                // console.log(this.contentlist);
             });
         axios.get(`${baseURI}/area`)
             .then(res => {
                 this.citylist = (res.data);
-                console.log(this.citylist);
+                // console.log(this.citylist);
             });
         axios.get(`${baseURI}/sigungu`)
             .then(res => {
                 this.sigungulist = (res.data);
-                console.log(this.sigungulist);
+                // console.log(this.sigungulist);
             });
         }
     ,
