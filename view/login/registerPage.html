@@ -16,60 +16,64 @@
                 <div class="default">
                     <div class="form-group">
                         <label>ID</label>
-                        <input type="text" class="form-control" id="username" v-model="form.username">
+                        <input type="text" class="form-control" id="username" v-model="username">
                     </div>
                     <div class="form-group">
                         <label>PW</label>
-                        <input type="password" class="form-control" id="password" v-model="form.password">
+                        <input type="password" class="form-control" id="password" v-model="password">
                     </div>
                     <div class="form-group">
                         <label>PW 확인</label>
-                        <input type="password" class="form-control" id="password-confirm" v-model="form.passwordconfirm">
+                        <input type="password" class="form-control" id="password-confirm" v-model="passwordconfirm">
+                    </div>
+                    <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" class="form-control" id="name" v-model="name">
                     </div>
                     <div class="form-group">
                         <label>메일</label>
-                        <input type="email" class="form-control" id="emailAddress" v-model="form.emailAddress">
+                        <input type="email" class="form-control" id="email" v-model="email">
                     </div>
                     <div class="level2">
                         <label>저는 관광지를 운영합니다.</label>
                         <input type="checkbox">
-                    </div>
-                    <div class="level2-form">
-                        <div class="level2-left">
-                            <div class="form-group">
-                                <label>지역</label>
-                                <select v-model="city">
-                                    <option disabled value="">지역</option>
-                                    <option v-for="metro in metropolis" v-bind:value="metro">{{ metro.name }}</option>
-                                </select>
+                        <div class="level2-form">
+                            <div class="level2-left">
+                                <div class="form-group">
+                                    <label>지역</label>
+                                    <select v-model="city">
+                                        <option disabled value="">지역</option>
+                                        <option v-for="citi in citylist" v-bind:value="citi">{{ citi.name }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>시군구</label>
+                                    <select v-model="sigungu">
+                                        <option disabled value="">시군구</option>
+                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>분류</label>
+                                    <select v-model="landmarkType">
+                                        <option disabled value="">분류</option>
+                                        <option v-for="content in contentlist">{{ content.name }}</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>시군구</label>
-                                <select v-model="town">
-                                    <option disabled value="">시군구</option>
-                                    <option v-for="sigungu in sigungulist" v-if="city.code == sigungu.areaCode">{{ sigungu.name }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>관광지 타입</label>
-                                <select v-model="landmarkType">
-                                    <option disabled value="">관광지 타입</option>
-                                    <option v-for="content in contentlist">{{ content.name }}</option>
-                                </select>
+                            <div class="level2-right">
+                                <div class="form-group">
+                                    <label>URL(옵션)</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
+                                            관광지 등록이 진행됩니다.</textarea>
+                                </div>
                             </div>
                         </div>
-                        <div class="level2-right">
-                            <div class="form-group">
-                                <label>URL(옵션)</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
-                                        관광지 등록이 진행됩니다.</textarea>
-                            </div>
-                        </div>
                     </div>
-                    <button type="submit" class="btn btn-green" onclick="location.href='./loginPage.html'">회원가입</button>
+                    <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
                 </div>
             </form>
         </div>
@@ -82,19 +86,19 @@
             el: '#_container',
             data: function () {
                 return {
-                    form: {
-                        username: '',
-                        emailAddress: '',
-                        password: '',
-                        passwordconfirm: ''
-                    },
+                    username: '',
+                    name:'',
+                    email: '',
+                    password: '',
+                    passwordconfirm: '',
                     errorMessage: '',
                     contentlist: [],
-                    metropolis: [],
+                    citylist: [],
                     sigungulist: [],
                     landmarkType: '',
                     city: '',
-                    town: ''
+                    sigungu: '',
+                    is_clicked: false
                 }
             },
             created: function () {
@@ -102,31 +106,36 @@
                 axios.get(`${baseURI}/content-type`)
                     .then(res => {
                         this.contentlist = (res.data);
-                        console.log(this.contentlist);
+                        //console.log(this.contentlist);
                     });
                 axios.get(`${baseURI}/area`)
                     .then(res => {
                         this.metropolis = (res.data);
-                        console.log(this.metropolis);
+                        //console.log(this.metropolis);
                     });
                 axios.get(`${baseURI}/sigungu`)
                     .then(res => {
                         this.sigungulist = (res.data);
-                        console.log(this.sigungulist);
+                        //console.log(this.sigungulist);
                     });
             },
             methods: {
-                submitForm () {
-                    this.$v.$touch()
-                    if (this.$v.$invalid) {
-                        return
+                submitForm: function(id, pw, name, email, event) {
+                    if(event){
+                        axios.get('http://49.50.161.45:8080/users', {
+                            params: {
+                                username: id,
+                                password: pw,
+                                name: name,
+                                email: email
+                            }
+                        })
+                        .then(res => {
+                            //console.log(res.data);
+                            alert('회원가입이 완료되었습니다.');
+                            location.href = 'loginPage.html';
+                        });
                     }
-
-                    registrationService.register(this.form).then(() => {
-                        this.$router.push({ name: 'LoginPage' })
-                    }).catch((error) => {
-                        this.errorMessage = 'Failed to register user. ' + error.message
-                    })
                 }
             }
         });
