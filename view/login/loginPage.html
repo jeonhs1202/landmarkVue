@@ -18,13 +18,13 @@
                 <form v-on:submit.prevent="submitForm">
                     <div class="form-group">
                         <label>ID</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="username" v-model="username">
                     </div>
                     <div class="form-group">
                         <label>PW</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" id="password" v-model="password">
                     </div>
-                    <button type="submit" class="btn btn-green" v-on:click="tryLogin">Log in</button>
+                    <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, $event)">Log in</button>
                     <a href="./registerPage.html">Sign in</a>
                 </form>
             </div>
@@ -37,30 +37,24 @@
             el: '#container',
             data: function () {
                 return {
-                    form: {
-                        username: '',
-                        password: ''
-                    },
-                    errorMessage: '',
-                    userInfo: []
+                    username: '',
+                    password: '',
+                    userInfo: {}
                 }
             },
             methods: {
-                submitForm: function() {
-                },
-                tryLogin: function() {
-                    axios.post('http://49.50.161.45:8080/login', {
-                        username: 'bh',
-                        password: 'bh1234'
-                    }, {
-                        headers: {
-                            Authorrization: 
-                        }
-                    })
-                    .then(res => {
-                        this.userInfo = res.data;
-                        console.log(this.userInfo);
-                    })
+                submitForm: function(id, pw, event) {
+                    if(event){
+                        axios.get('http://49.50.161.45:8080/login', {
+                            params: {
+                                username: id,
+                                password: pw
+                            }
+                        })
+                            .then(res => {
+                                console.log(res.data);
+                            });
+                    }
                 }
             }
         });
