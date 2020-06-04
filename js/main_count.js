@@ -25,7 +25,7 @@ var myButton = new Vue({
         const baseURI = 'http://49.50.161.45:8080/review/count'
         axios.get(`${baseURI}`,{
             headers: {
-                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI4NzYwNH0.9DV_udUgeaQVOh3VVV0zEoDOhJ64fdZDP0WlRnKcjS4bkHtUvJ7c4NPVIG_dxSyXxtZoFArL5J_KSsoXQx7Xhw'
+                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI5MjMzNX0.zEK14b1lmNvKQMT2vUfImMwG2zC3kJpCZUqWUhm4bePgcuoVwojiG7in0BscivC0iUxDwOpmQrbPRQhgTuqE7w'
             }
         })
         .then(res => { 

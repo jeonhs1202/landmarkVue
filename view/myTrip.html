@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/myTrip.css">
 </head>
@@ -12,10 +11,11 @@
     <div id="_header">
         <header-item v-bind:name="name" v-bind:page-num='1'></header-item>
     </div>
+    <div class="whereami">
+        ▷ 내 여행 보기
+    </div>
     <div class="contentPage">
-        <div class="whereami">
-            ▷ 내 여행 보기
-        </div>
+
         <div id="_mytrip">
             <div class="sideBar">
                 <side-bar v-bind:items="content" v-bind:btnid="itemId" v-on:pass="showMyTrip"></side-bar>

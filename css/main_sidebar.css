@@ -1,5 +1,6 @@
 .logo {
-    border: 1px solid #6CAC9D;
+    border: 1.5px solid  #6CAC9D;
+    border-radius: 10px 10px 10px 10px;
     color: #8DB89B;
     font-weight: bold;
     font-size: 20px;
@@ -16,11 +17,16 @@
 
 .item {
     border: none;
+    border: 1px solid #6CAC9D;
     background-color: white;
     color: black;
     width: 150px;
     height: 200px;
     padding: 0px;
+}
+
+.item:hover {
+    background-color: rgba(246, 255, 204,0.5);
 }
 
 .itemImg {

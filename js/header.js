@@ -47,7 +47,19 @@ Vue.component('header-item',{
   var header = new Vue({
     el: '#_header',
     data: {
-        name: '보현',
-    }
+        name: '',
+    },
+    created: function() {
+        const baseURI = 'http://49.50.161.45:8080/users'
+        axios.get(`${baseURI}`,{
+            headers: {
+                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI5MjMzNX0.zEK14b1lmNvKQMT2vUfImMwG2zC3kJpCZUqWUhm4bePgcuoVwojiG7in0BscivC0iUxDwOpmQrbPRQhgTuqE7w'
+            }
+        })
+        .then(res => { 
+            this.name = res.data.name;
+            // console.log(this.props);
+            });
+    },
     })
   
