@@ -45,15 +45,23 @@
             methods: {
                 submitForm: function(id, pw, event) {
                     if(event){
-                        axios.get('http://49.50.161.45:8080/login', {
-                            params: {
-                                username: id,
-                                password: pw
+                        axios.post('http://49.50.161.45:8080/login', {
+                            username: id,
+                            password: pw
+                        }).then(res => {
+                            userInfo = res.headers['auth-token'];
+                            //console.log(userInfo);
+                            if(userInfo != null){
+                                window.localStorage.setItem('token', userInfo);
+                                //console.log(window.localStorage.getItem('token'));
+                                location.href = './../main.html';
+                            }else{
+                                alert('계정정보 조회에 실패했습니다.');
                             }
-                        })
-                            .then(res => {
-                                console.log(res.data);
-                            });
+                        }).catch(ex => {
+                            console.log(ex);
+                            alert('유효하지 않은 아이디와 비밀번호 입니다.');
+                        });
                     }
                 }
             }

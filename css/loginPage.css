@@ -1,6 +1,11 @@
+body {
+  background-color: #F1F1F5;
+}
+
 .container {
-    width: 90vw;
-    height: 90vh;
+    margin: 90px auto;
+    width: 700px;
+    height: 500px;
   }
   
 .left {
@@ -9,12 +14,13 @@
     overflow-x: hidden;
     padding-top: 50px;
     float: left;
-    width: 50vw;
+    width: 350px;
+    border-radius: 25px 0px 0px 25px;
   }
   
 .logo-wrapper {
     text-align: center;
-    width: 50vw;
+    width: 350px;
   }
 
 .logo {
@@ -27,28 +33,42 @@
     overflow-x: hidden;
     padding-top: 50px;
     float: center;
-    width: 40vw;
+    width: 350px;
+    background-color: white;
+    border-radius: 0px 25px 25px 0px;
   }
   
 .login-form {
-    text-align: center;
-    margin-top: 100px;
-    margin-left: 50px;
+    margin: 100px 75px;
   }
   
 .form-group {
     margin-bottom: 10px;
   }
 
+.form-group input {
+    display: block;
+    width: 200px;
+    background-color: #F2F2F2;
+    border: 0;
+    outline: none;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
 label {
     font-weight: bold;
-    color: #000000;
-    margin-right: 5px;
+    color: gray;
   }
   
 .btn-green{
-    background-color: #558967 !important;
+    background-color: #7CAE88;
     color: #ffffff;
+    font-weight: bold;
+    width: 70px;
+    height: 30px;
+    border: none;
   }
   
 a {

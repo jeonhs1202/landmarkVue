@@ -12,6 +12,7 @@ label {
     height: 90vh;
     overflow: hidden;
     background-color: white;
+    border-radius: 25px;
   }
   
 .logo-wrapper {
@@ -77,12 +78,13 @@ input[type=checkbox]:checked + .level2-form {
   }
   
 .notice {
-   width: 260px;
-   height: 55px;
+   width: 220px;
+   height: 40px;
    resize: none;
    text-align: center;
    font-weight: bold;
    overflow: hidden;
+   font-family: sans-serif;
   }
   
 .btn-green{
