@@ -1,59 +1,71 @@
-Vue.component('header-item',{
+var headItem = {
     props: {
       name: String,
       pageNum: Number,
     },
+    methods:{
+        logout:function(){
+            window.localStorage.clear();
+            location.href = './login/loginPage.html';
+        },
+        mypage:function () {
+            location.href = './mypage.html';
+        }
+    },
     template:
      `
      <div id="_header" class="menuBack">
-     <div>
-         <img src="../img/logo.png" class="logoImg" onclick="location.href='main.html'">
-     </div>
-     <div class="buttonBar">
-         <button class="menuButton" onclick="location.href='myTrip.html'">
-             <img src="../img/myTravelListChecked.png" class="menuImg" v-if="pageNum=='1'">
-             <img src="../img/myTravelList.png" class="menuImg" v-else>
-             내 여행 보기
-         </button>
-         <button class="menuButton" onclick="location.href='landMarkSearch.html'">
-             <img src="../img/landMarkSearchChecked.png" class="menuImg" v-if="pageNum=='2'">
-             <img src="../img/landMarkSearch.png" class="menuImg" v-else>
-             관광지 검색
-         </button>
-         <button class="menuButton" onclick="location.href='myLandMark.html'">
-             <img src="../img/myLandMarkManageChecked.png" class="menuImg" v-if="pageNum=='3'">
-             <img src="../img/myLandMarkManage.png" class="menuImg" v-else>
-             내 관광지 관리
-         </button>
-         <button class="menuButton" onclick="location.href='qna.html'">
-             <img src="../img/QnAChecked.png" class="menuImg" v-if="pageNum=='4'">
-             <img src="../img/QnA.png" class="menuImg" v-else>
-             문의 사항
-         </button>
-     </div>
-     <div class="login">
-         {{ name }} 님 안녕하세요!
-         <button>
-             마이페이지
-         </button>
-         <button>
-             로그아웃
-         </button>
-     </div>
+        <div>
+            <img src="../img/logo.png" class="logoImg" onclick="location.href='main.html'">
+        </div>
+        <div class="buttonBar">
+            <button class="menuButton" onclick="location.href='myTrip.html'">
+                <img src="../img/myTravelListChecked.png" class="menuImg" v-if="pageNum=='1'">
+                <img src="../img/myTravelList.png" class="menuImg" v-else>
+                내 여행 보기
+            </button>
+            <button class="menuButton" onclick="location.href='landMarkSearch.html'">
+                <img src="../img/landMarkSearchChecked.png" class="menuImg" v-if="pageNum=='2'">
+                <img src="../img/landMarkSearch.png" class="menuImg" v-else>
+                관광지 검색
+            </button>
+            <button class="menuButton" onclick="location.href='myLandMark.html'">
+                <img src="../img/myLandMarkManageChecked.png" class="menuImg" v-if="pageNum=='3'">
+                <img src="../img/myLandMarkManage.png" class="menuImg" v-else>
+                내 관광지 관리
+            </button>
+            <button class="menuButton" onclick="location.href='qna.html'">
+                <img src="../img/QnAChecked.png" class="menuImg" v-if="pageNum=='4'">
+                <img src="../img/QnA.png" class="menuImg" v-else>
+                문의 사항
+            </button>
+        </div>
+        <div class="login">
+            {{ name }} 님 안녕하세요!
+            <button v-on:click="mypage">
+                마이페이지
+            </button>
+            <button v-on:click="logout">
+                로그아웃
+            </button>
+        </div>
    </div>
     `
-  })
+  };
 
   var header = new Vue({
     el: '#_header',
     data: {
         name: '',
     },
+    components: {
+        'header-item': headItem,
+    },
     created: function() {
         const baseURI = 'http://49.50.161.45:8080/users'
         axios.get(`${baseURI}`,{
             headers: {
-                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI5MjMzNX0.zEK14b1lmNvKQMT2vUfImMwG2zC3kJpCZUqWUhm4bePgcuoVwojiG7in0BscivC0iUxDwOpmQrbPRQhgTuqE7w'
+                'auth-token': window.localStorage.getItem('token')
             }
         })
         .then(res => { 

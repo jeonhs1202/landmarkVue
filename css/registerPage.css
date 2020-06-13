@@ -89,6 +89,18 @@ input[type=checkbox]:checked + .level2-form {
   
 .btn-green{
     background-color: #7CAE88;
+    margin: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    width: 80px;
+    height: 30px;
+    border: none;
+    margin-left: 170px;
+  }
+
+  .btn-green-for-mypage{
+    background-color: #7CAE88;
+    margin: 10px;
     color: #ffffff;
     font-weight: bold;
     width: 80px;

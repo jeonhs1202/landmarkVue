@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmark</title>
+    <link rel="stylesheet" type="text/css" href="/css/registerPage.css">
+</head>
+<body>
+    <div id="_container" class="container">
+        <div class="logo-wrapper">
+            <img class="logo" src="/img/logo2.png">
+        </div>
+        <div class="register-form">
+            <form @submit.prevent="submitForm">
+                <div class="default">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" id="username" v-model="username">
+                    </div>
+                    <div class="form-group">
+                        <label>PW</label>
+                        <input type="password" class="form-control" id="password" v-model="password">
+                    </div>
+                    <div class="form-group">
+                        <label>PW 확인</label>
+                        <input type="password" class="form-control" id="password-confirm" v-model="passwordconfirm">
+                    </div>
+                    <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" class="form-control" id="name" v-model="name">
+                    </div>
+                    <div class="form-group">
+                        <label>메일</label>
+                        <input type="email" class="form-control" id="email" v-model="email">
+                    <div>
+                        <button class="btn-green-for-mypage" v-on:click="back">뒤로가기</button>
+                        <button type="submit" class="btn-green-for-mypage" v-on:click="submitForm(username, password, name, email, $event)">수정하기</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#_container',
+            data: function () {
+                return {
+                    username: '',
+                    name:'',
+                    email: '',
+                    password: '',
+                    passwordconfirm: '',
+                    errorMessage: '',
+                    contentlist: [],
+                    citylist: [],
+                    sigungulist: [],
+                    landmarkType: '',
+                    city: '',
+                    sigungu: ''
+                }
+            },
+            created: function () {
+                const baseURI = 'http://49.50.161.45:8080/code'
+                axios.get(`${baseURI}/content-type`)
+                    .then(res => {
+                        this.contentlist = (res.data);
+                    });
+                axios.get(`${baseURI}/area`)
+                    .then(res => {
+                        this.citylist = (res.data);
+                    });
+                axios.get(`${baseURI}/sigungu`)
+                    .then(res => {
+                        this.sigungulist = (res.data);
+                    });
+            },
+            methods: {
+                back:function(){
+                    location.href = './main.html';
+                },
+                submitForm: function(id, pw, name, email, event) {
+                    if(event){
+                        axios.get('http://49.50.161.45:8080/users', {
+                            params: {
+                                username: id,
+                                password: pw,
+                                name: name,
+                                email: email
+                            }
+                        })
+                        .then(res => {
+                            //console.log(res.data);
+                            alert('회원가입이 완료되었습니다.');
+                            location.href = 'loginPage.html';
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
