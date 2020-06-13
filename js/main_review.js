@@ -11,7 +11,21 @@ Vue.component('modal', {
                         <table class = "modal-table">
                             <tr>
                                 <th>지역</th>
-                                <td><input type="text" class="form-control" id="city" v-model="city"></td>
+                                <td>
+                                    <select v-model="city">
+                                        <option disabled value="">지역</option>
+                                        <option v-for="citi in citylist" v-bind:value="citi">{{ citi.name }}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>시군구</th>
+                                <td>
+                                    <select v-model="sigungu">
+                                        <option disabled value="">시군구</option>
+                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>관광지명</th>
@@ -23,7 +37,7 @@ Vue.component('modal', {
                             </tr>
                             <tr>
                                 <th>사진</th>
-                                <td><input type="text" class="form-control" id="photo" v-model="photo"></td>
+                                <td><input type="file" class="form-control" id="photo" v-model="photo"></td>
                             </tr>
                             <tr>
                                 <th>후기</th>
