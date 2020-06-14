@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/myLandmark.css">
 </head>
@@ -12,22 +11,24 @@
     <div id="_header">
         <header-item v-bind:name="name" v-bind:page-num='3'></header-item>
     </div>
+    <div class="whereami">
+        ▷ 내 관광지 관리
+    </div>
     <div class="landmarkcontentPage">
-        <div class="whereami">
-            ▷ 내 관광지 관리
-        </div>
+
         <div class="sideBar">
         </div>
         <div id="_mylandmark" class="landmarkContent">
             <my-landmark v-bind:rv="review" v-bind:lm="landmark" v-bind:content="pass" v-on:click="whichBtn"></my-landmark>
         </div>
     </div>
-    <footer include-html="footer.html"></footer>
+    <div id="_footer">
+        <footer-item></footer-item>
+    </div>
 </body>
-<script>
-    includeHTML();
-</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
 <script type="text/javascript" src="../js/myLandmark.js"></script>
 </html>

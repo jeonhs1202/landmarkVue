@@ -11,27 +11,41 @@ Vue.component('modal', {
                         <table class = "modal-table">
                             <tr>
                                 <th>지역</th>
-                                <td>서울시 노원구</td>
+                                <td>
+                                    <select v-model="city">
+                                        <option disabled value="">지역</option>
+                                        <option v-for="citi in citylist" v-bind:value="citi">{{ citi.name }}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>시군구</th>
+                                <td>
+                                    <select v-model="sigungu">
+                                        <option disabled value="">시군구</option>
+                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>관광지명</th>
-                                <td>우리집</td>
+                                <td><input type="text" class="form-control" id="name" v-model="name"></td>
                             </tr>
                             <tr>
                                 <th>일시</th>
-                                <td>1996.12.02</td>
+                                <td><input type="date" class="form-control" id="date" v-model="date"></td>
                             </tr>
                             <tr>
                                 <th>사진</th>
-                                <td>pic</td>
+                                <td><input type="file" class="form-control" id="photo" v-model="photo"></td>
                             </tr>
                             <tr>
                                 <th>후기</th>
-                                <td>내 집 같은 편안함</td>
+                                <td><input type="text" class="form-control" id="review" v-model="review"></td>
                             </tr>
                             <tr>
                                 <th>기타</th>
-                                <td>guitar</td>
+                                <td><input type="text" class="form-control" id="etc" v-model="etc"></td>
                             </tr>
                         </table>
                     </div>
@@ -42,36 +56,54 @@ Vue.component('modal', {
                 </div>
             </div>  
         </div>
-    </transition>`
-})
-
-var addMyButton = new Vue({
-    el: '#_addmytrip',
-    data: {
+    </transition>`,
+    props: {
         city: '',
         citylist: [],
         sigungu: '',
         sigungulist: [],
-        showModal: false
+        name: '',
+        date: '',
+        photo: '',
+        review: '',
+        etc: ''
+    }
+})
+
+var addMyButton = new Vue({
+    el: '#_addmytrip',
+    data: function() {
+        return {
+            city: '',
+            citylist: [],
+            sigungu: '',
+            sigungulist: [],
+            name: '',
+            date: '',
+            photo: '',
+            review: '',
+            etc: '',
+            showModal: false
+        }
     },
     created: function() {
         const baseURI = 'http://49.50.161.45:8080/code'
         axios.get(`${baseURI}/area`)
             .then(res => {
                 this.citylist = (res.data);
-                console.log(this.citylist);
+                // console.log(this.citylist);
             });
         axios.get(`${baseURI}/sigungu`)
             .then(res => {
                 this.sigungulist = (res.data);
-                console.log(this.sigungulist);
+                // console.log(this.sigungulist);
             });
         },
         methods: {
             cityset: function(value){
                 this.city = value;
             },
-            countryset: function(value){
+            sigunguset: function(value){
                 this.sigungu = value;
             },
         }

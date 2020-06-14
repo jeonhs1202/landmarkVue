@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css"> <!--메인 화면 css-->
     <link rel="stylesheet" type="text/css" href="../css/main_sideBar.css"> <!--My History 사이트 버튼 css-->
     <link rel="stylesheet" type="text/css" href="../css/main_count.css"> <!--지역 버튼 css-->
@@ -13,18 +12,16 @@
     <div id="_header">
         <header-item v-bind:name="name"></header-item>
     </div>
-    
+    <div class="whereami">
+        ▷ 메인 페이지
+    </div>   
     <div class="contentPage">
-        <div class="whereami">
-            ▷ 메인 페이지
-        </div>
+
         <div id="_left" class="sideBar">
             <side-bar v-bind:items="history"></side-bar>
         </div>
         <div id="_mybutton" class="contentPage1">
             <my-button v-bind:citylist="citybuttonsort" v-bind:posts="posts"></my-button>
-            <button @click="citysend">날려</button>
-            <p v-for="post in posts">{{post.name}}</p>
         </div>  
         <div class="colortable">
             <table>
@@ -35,18 +32,21 @@
         <div id="_addmytrip" class="plusbutton">
             <button class="plusbtn" id="show-modal" @click="showModal = true">
              여행지 추가</button>
-             <modal v-if="showModal" @close="showModal = false"></modal>
+             <modal v-if="showModal" @close="showModal = false" v-bind:city="city" v-bind:citylist="citylist"
+             v-bind:sigungu="sigungu" v-bind:sigungulist="sigungulist" v-bind:name="name" v-bind:date="date"
+             v-bind:photo="photo" v-bind:review="review" v-bind:etc="etc"></modal>
         </div>
+
     </div>
      
-    <footer include-html="footer.html"></footer>
+    <div id="_footer">
+        <footer-item></footer-item>
+    </div>
 </body>
-<script>
-    includeHTML();
-</script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
 <script type="text/javascript" src="../js/main_count.js"></script>
 <script type="text/javascript" src="../js/main_review.js"></script>
 <script type="text/javascript" src="../js/main_sidebar.js"></script>

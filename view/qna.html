@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/qna.css">
-    <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/searchPageStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/main_sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../css/landmarkSearch.css">
 </head>
 <body>
     <div id="_header">
         <header-item v-bind:name="name" v-bind:page-num='4'></header-item>
     </div>
+    <div class="whereami">
+        ▷ 문의사항
+    </div>
     <div class="contentPage">
-        <div class="whereami">
-            ▷ 문의사항
-        </div>
+
         <div class="sideBar">
         </div>
         <div id="qna" class="contentPage1">
@@ -32,12 +32,13 @@
             </div>
         </div>
     </div> 
-    <footer include-html="footer.html"></footer>
+    <div id="_footer">
+        <footer-item></footer-item>
+    </div>
 </body>
-<script>
-    includeHTML();
-</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
 <script type="text/javascript" src="../js/qna.js"></script>
 </html>

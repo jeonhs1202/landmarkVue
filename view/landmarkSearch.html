@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <script src="../js/includeHTML.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/sideBarStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/landmarksearch.css">
@@ -13,10 +12,10 @@
     <div id="_header">
         <header-item v-bind:name="name" v-bind:page-num='2'></header-item>
     </div>
+    <div class="whereami">
+        ▷ 관광지 검색
+    </div>
     <div class="contentPage">
-        <div class="whereami">
-            ▷ 관광지 검색
-        </div>
         <div class="sideBar">
         </div>
         <div id="_searchPage" class="contentPage1">
@@ -26,13 +25,13 @@
             {{city.name}}, {{sigungu}}, {{landMarkType}}, {{val}}을 검색합니다.
         </div>       
     </div>   
-    <footer include-html="footer.html"></footer>
+    <div id="_footer">
+        <footer-item></footer-item>
+    </div>
 </body>
-<script>
-    includeHTML();
-</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="../js/header.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
 <script type="text/javascript" src="../js/landmarkSearch.js"></script>
 </html>

@@ -12,6 +12,7 @@ label {
     height: 90vh;
     overflow: hidden;
     background-color: white;
+    border-radius: 25px;
   }
   
 .logo-wrapper {
@@ -36,25 +37,24 @@ label {
     width: 500px;
   }
 
+  .form-group {
+    margin: 0 0 15px;
+  }
+
   .form-group input {
     display: block;
     width: 400px;
     background-color: #F2F2F2;
     border: 0;
     outline: none;
-    line-height: 40px;
+    line-height: 30px;
     font-size: 14px;
     padding-left: 5px;
-    margin: 0 0 15px;
-}
-
-.level2 {
-  margin-bottom: 10px;
 }
   
 input[type=checkbox]:checked + .level2-form {
     width: 900px;
-    height: 40vh;
+    height: 130px;
   
     -ms-transition-duration: 1s;
     -webkit-transition-duration: 1s;
@@ -66,35 +66,45 @@ input[type=checkbox]:checked + .level2-form {
 .level2-form {
     overflow: hidden;
     height: 0px;
-    margin: auto;
+    margin: 20px auto;
   }
   
 .level2-left {
     float: left;
-    margin-left: 100px;
   }
   
 .level2-right {
-    float: right;
-    margin-right: 100px;
+    margin-left: 230px;
   }
   
 .notice {
-   float: right;
-   width: 265px;
-   height: 55px;
-   margin-top: 2vh;
+   width: 220px;
+   height: 40px;
    resize: none;
    text-align: center;
    font-weight: bold;
+   overflow: hidden;
+   font-family: sans-serif;
   }
   
 .btn-green{
     background-color: #7CAE88;
+    margin: 10px;
     color: #ffffff;
-    float: center;
     font-weight: bold;
     width: 80px;
     height: 30px;
     border: none;
+    margin-left: 170px;
+  }
+
+  .btn-green-for-mypage{
+    background-color: #7CAE88;
+    margin: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    width: 80px;
+    height: 30px;
+    border: none;
+    margin-left: 170px;
   }

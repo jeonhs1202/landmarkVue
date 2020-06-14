@@ -2,7 +2,7 @@ var menu = {
     template: `<ul>
                     <div v-for="item in items">
                         <li>
-                        <button class="item" v-bind:class="[btnid== item.id ? 'clicked' : '']" v-on:click="passData(item.id, $event)">
+                        <button class="item" v-bind:class="[btnid == item.id ? 'clicked' : '']" v-on:click="passData(item.id, $event)">
                             <div class="date">{{ item.createdTime }}</div>
                             <div class="name">{{ item.title }}</div>
                         </button>
