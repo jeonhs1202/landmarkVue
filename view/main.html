@@ -33,8 +33,9 @@
             <button class="plusbtn" id="show-modal" @click="showModal = true">
              여행지 추가</button>
              <modal v-if="showModal" @close="showModal = false" v-bind:city="city" v-bind:citylist="citylist"
-             v-bind:sigungu="sigungu" v-bind:sigungulist="sigungulist" v-bind:name="name" v-bind:date="date"
-             v-bind:photo="photo" v-bind:review="review" v-bind:etc="etc"></modal>
+             v-bind:sigungu="sigungu" v-bind:sigungulist="sigungulist" v-bind:name="name" v-bind:date="date" v-bind:type="type"
+             v-bind:photo="photo" v-bind:review="review" v-bind:etc="etc" v-bind:contentlist="contentlist" v-on:city="cityset" v-on:type="typeset" 
+             v-on:sigungu="sigunguset" v-on:name="nameset" v-on:date="dateset" v-on:photo="photoset" v-on:review="reviewset" v-on:etc="etcset"></modal>
         </div>
 
     </div>

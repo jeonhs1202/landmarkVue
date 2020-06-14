@@ -28,6 +28,15 @@ Vue.component('modal', {
                                 </td>
                             </tr>
                             <tr>
+                                <th>분류</th>
+                                <td>
+                                    <select v-model="type">
+                                        <option disabled value="">분류</option>
+                                        <option v-for="content in contentlist">{{ content.name }}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>관광지명</th>
                                 <td><input type="text" class="form-control" id="name" v-model="name"></td>
                             </tr>
@@ -37,7 +46,7 @@ Vue.component('modal', {
                             </tr>
                             <tr>
                                 <th>사진</th>
-                                <td><input type="file" class="form-control" id="photo" v-model="photo"></td>
+                                <td><input type="file" class="form-control" id="photo" v-on:change="handleChange"></td>
                             </tr>
                             <tr>
                                 <th>후기</th>
@@ -51,7 +60,7 @@ Vue.component('modal', {
                     </div>
 
                     <div class = "model-save">
-                        <button @click="$emit('close')">저장</button>
+                        <button @click="passData(city.code, sigungu.code, type.contentTypeId, name, date, photo, review, etc); $emit('close');">저장</button>
                     </div>    
                 </div>
             </div>  
@@ -59,14 +68,36 @@ Vue.component('modal', {
     </transition>`,
     props: {
         city: '',
-        citylist: [],
+        citylist: {},
         sigungu: '',
-        sigungulist: [],
+        sigungulist: {},
+        type: '',
+        contentlist: {},
         name: '',
         date: '',
         photo: '',
         review: '',
         etc: ''
+    },
+    methods: {
+        handleChange: function(event) {
+            var file = event.target.files[0]
+            if(file && file.type.match(/^image\/(png|jpeg|jpg)$/)){
+                this.photo = window.URL.createObjectURL(file)
+            }
+        },
+        passData: function (city, sigungu, type, name, date, photo, review, etc) {
+            if (event) {
+                this.$emit('type', type);
+                this.$emit('city', city);
+                this.$emit('sigungu', sigungu);
+                this.$emit('name', name);
+                this.$emit('date', date);
+                this.$emit('photo', photo);
+                this.$emit('review', review);
+                this.$emit('etc', etc);
+            }
+        }
     }
 })
 
@@ -78,6 +109,8 @@ var addMyButton = new Vue({
             citylist: [],
             sigungu: '',
             sigungulist: [],
+            type: '',
+            contentlist: [],
             name: '',
             date: '',
             photo: '',
@@ -98,13 +131,56 @@ var addMyButton = new Vue({
                 this.sigungulist = (res.data);
                 // console.log(this.sigungulist);
             });
+        axios.get(`${baseURI}/content-type`)
+            .then(res => {
+                this.contentlist = (res.data);
+                // console.log(this.contentlist);
+            });
+    },
+    methods: {
+        typeset: function (value) {
+            this.type = value;
         },
-        methods: {
-            cityset: function(value){
-                this.city = value;
-            },
-            sigunguset: function(value){
-                this.sigungu = value;
-            },
+        cityset: function (value) {
+            this.city = value;
+        },
+        sigunguset: function (value) {
+            this.sigungu = value;
+        },
+        nameset: function (value) {
+            this.name = value;
+        },
+        dateset: function (value) {
+            this.date = value;
+        },
+        photoset: function (value) {
+            this.photo = value;
+        },
+        reviewset: function (value) {
+            this.review = value;
+        },
+        etcset: function (value) {
+            this.etc = value;
+        },
+        addLandmark: function() {
+            axios.post('http://49.50.161.45:8080/review', {
+                areaCode: this.city,
+                sigunguCode: this.sigungu,
+                title: this.name,
+                overview: this.review,
+                tourId: this.type,
+                firstImage: this.photo
+            },{
+                headers: {
+                    'auth-token': window.localStorage.getItem('token')
+                }
+            }).then(res => {
+                if(res.data){
+                    alert('등록되었습니다.');
+                }else{
+                    alert('후기 등록에 실패하였습니다.');
+                }
+            });
         }
+    }
 })
