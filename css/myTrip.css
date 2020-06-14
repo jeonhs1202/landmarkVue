@@ -21,8 +21,8 @@
 }
 
 .tripImg {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
 }
 
 .sideBar ul li { 
@@ -33,19 +33,22 @@
 .item {
     border: 1.5px solid  #6CAC9D;
     background-color: white;
-    color: black;
+    color: #6CAC9D;
+    font-weight: bold;
     width: 200px;
-    height: 100px;
-    padding: 0px;
+    height: 80px;
+    padding: 10px;
     border-radius: 10px 10px 10px 10px;
 }
 
 .clicked {
-    background-color: rgba(246, 255, 204,0.5);
+    background-color: #6CAC9D;
+    color: white;
 }
 
 .item:hover {
-    background-color: rgba(246, 255, 204,0.5);
+    background-color: #6CAC9D;
+    color: white;
 }
 
 .date {
@@ -55,4 +58,22 @@
 
 .name {
     font-size: 20px;
+    overflow: hidden;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.time {
+    color: gray;
+}
+
+.line {
+    border: none;
+    height: 0.8px;
+    background-color: rgb(192, 192, 192);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
