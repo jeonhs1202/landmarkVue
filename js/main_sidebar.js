@@ -5,7 +5,8 @@ var menu = {
                     </li>
                     <div v-for="item in items">
                         <li>
-                        <a v-bind:href="'myTrip.html?id='+item.id"><button class="item">{{ item.addr1 }}
+                        <a v-bind:href="'myTrip.html?id='+item.id"><button class="item">
+                        <img src="../img/location.png" class="locImg">{{ item.areaName }} {{ item.sigunguName }}
                         <img v-if="item.firstImage == null" src="../img/temptrip.jpg" class="itemImg">
                         </button></a>
                         </li>
@@ -23,12 +24,13 @@ var sideBar = new Vue({
         history: []
     },
     created: function () {
-        axios.post('http://49.50.161.45:8080/review/recent', {
+        axios.get('http://49.50.161.45:8080/review/recent', {
             headers: {
                 'auth-token': window.localStorage.getItem('token')
             }
         }).then(res => {
             this.history = (res.data);
+            console.log(res.data);
         });
     },
     components: {
