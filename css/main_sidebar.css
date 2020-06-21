@@ -21,21 +21,18 @@
     background-color: white;
     color: black;
     width: 150px;
-    height: 200px;
-    padding: 0px;
+    height: 50px;
 }
 
 .item:hover {
     background-color: rgba(246, 255, 204,0.5);
 }
 
-.itemImg {
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+.location {
+    margin-bottom: 10px;
 }
 
 .locImg {
-    width: 20px;
+    width: 12px;
     height: 25px;
 }
