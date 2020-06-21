@@ -1,6 +1,6 @@
 var city = {
     template: `<div class="btn">
-                    <li v-for="(city, i) in citylist" v-bind:class="{'odd':i%2==1, 'even':i%2==0}">
+                    <li v-for="(city, i) in citylist">
                         <button v-bind:class="city.level">{{ city.name }}</button>
                     </li>
                 </div>`
@@ -25,7 +25,7 @@ var myButton = new Vue({
         const baseURI = 'http://49.50.161.45:8080/review/count'
         axios.get(`${baseURI}`,{
             headers: {
-                'auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaCIsImV4cCI6MTU5MTI5MjMzNX0.zEK14b1lmNvKQMT2vUfImMwG2zC3kJpCZUqWUhm4bePgcuoVwojiG7in0BscivC0iUxDwOpmQrbPRQhgTuqE7w'
+                'auth-token': window.localStorage.getItem('token')
             }
         })
         .then(res => { 
