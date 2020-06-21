@@ -1,6 +1,6 @@
 Vue.component('modal', {
-    template: 
-    `<transition name="modal">
+    template:
+        `<transition name="modal">
         <div class="modal-mask">
             <div class = "modal-wrapper">
                 <div class = "modal-container">
@@ -23,7 +23,7 @@ Vue.component('modal', {
                                 <td>
                                     <select v-model="sigungu">
                                         <option disabled value="">시군구</option>
-                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode" v-bind:value="sigun.code">{{ sigun.name }}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -60,7 +60,8 @@ Vue.component('modal', {
                     </div>
 
                     <div class = "model-save">
-                        <button @click="passData(city.code, sigungu.code, type.contentTypeId, name, date, photo, review, etc); $emit('close');">저장</button>
+                        <button @click="passData(city.code, sigungu, type.contentTypeId, name, date, photo, review, etc); $emit('close');">저장</button>
+                        <button @click="$emit('close')">닫기</button>
                     </div>    
                 </div>
             </div>  
@@ -80,9 +81,9 @@ Vue.component('modal', {
         etc: ''
     },
     methods: {
-        handleChange: function(event) {
+        handleChange: function (event) {
             var file = event.target.files[0]
-            if(file && file.type.match(/^image\/(png|jpeg|jpg)$/)){
+            if (file && file.type.match(/^image\/(png|jpeg|jpg)$/)) {
                 this.photo = window.URL.createObjectURL(file)
             }
         },
@@ -96,6 +97,7 @@ Vue.component('modal', {
                 this.$emit('photo', photo);
                 this.$emit('review', review);
                 this.$emit('etc', etc);
+                this.$emit('pass');
             }
         }
     }
@@ -103,7 +105,7 @@ Vue.component('modal', {
 
 var addMyButton = new Vue({
     el: '#_addmytrip',
-    data: function() {
+    data: function () {
         return {
             city: '',
             citylist: [],
@@ -119,7 +121,7 @@ var addMyButton = new Vue({
             showModal: false
         }
     },
-    created: function() {
+    created: function () {
         const baseURI = 'http://49.50.161.45:8080/code'
         axios.get(`${baseURI}/area`)
             .then(res => {
@@ -162,7 +164,7 @@ var addMyButton = new Vue({
         etcset: function (value) {
             this.etc = value;
         },
-        addLandmark: function() {
+        addLandmark: function () {
             axios.post('http://49.50.161.45:8080/review', {
                 areaCode: this.city,
                 sigunguCode: this.sigungu,
@@ -170,14 +172,14 @@ var addMyButton = new Vue({
                 overview: this.review,
                 tourId: this.type,
                 firstImage: this.photo
-            },{
+            }, {
                 headers: {
                     'auth-token': window.localStorage.getItem('token')
                 }
             }).then(res => {
-                if(res.data){
+                if (res.data) {
                     alert('등록되었습니다.');
-                }else{
+                } else {
                     alert('후기 등록에 실패하였습니다.');
                 }
             });

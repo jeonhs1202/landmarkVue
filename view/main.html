@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandMark</title>
-    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css"> <!--메인 화면 css-->
-    <link rel="stylesheet" type="text/css" href="../css/main_sideBar.css"> <!--My History 사이트 버튼 css-->
-    <link rel="stylesheet" type="text/css" href="../css/main_count.css"> <!--지역 버튼 css-->
+    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
+    <!--메인 화면 css-->
+    <link rel="stylesheet" type="text/css" href="../css/main_sideBar.css">
+    <!--My History 사이트 버튼 css-->
+    <link rel="stylesheet" type="text/css" href="../css/main_count.css">
+    <!--지역 버튼 css-->
 </head>
+
 <body>
     <div id="_header">
         <header-item v-bind:name="name"></header-item>
     </div>
     <div class="whereami">
         ▷ 메인 페이지
-    </div>   
+    </div>
     <div class="contentPage">
 
         <div id="_left" class="sideBar">
@@ -22,24 +27,28 @@
         </div>
         <div id="_mybutton" class="contentPage1">
             <my-button v-bind:citylist="citybuttonsort" v-bind:posts="posts"></my-button>
-        </div>  
+        </div>
         <div class="colortable">
             <table>
                 <tr>빈도수</tr>
-                <tr class="colortr"><td>10 + &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1</td></tr>
+                <tr class="colortr">
+                    <td>10 + &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1</td>
+                </tr>
             </table>
         </div>
         <div id="_addmytrip" class="plusbutton">
             <button class="plusbtn" id="show-modal" @click="showModal = true">
-             여행지 추가</button>
-             <modal v-if="showModal" @close="showModal = false" v-bind:city="city" v-bind:citylist="citylist"
-             v-bind:sigungu="sigungu" v-bind:sigungulist="sigungulist" v-bind:name="name" v-bind:date="date" v-bind:type="type"
-             v-bind:photo="photo" v-bind:review="review" v-bind:etc="etc" v-bind:contentlist="contentlist" v-on:city="cityset" v-on:type="typeset" 
-             v-on:sigungu="sigunguset" v-on:name="nameset" v-on:date="dateset" v-on:photo="photoset" v-on:review="reviewset" v-on:etc="etcset"></modal>
+                여행지 추가</button>
+            <modal v-if="showModal" @close="showModal = false" v-bind:city="city" v-bind:citylist="citylist"
+                v-on:pass="addLandmark" v-bind:sigungu="sigungu" v-bind:sigungulist="sigungulist" v-bind:name="name"
+                v-bind:date="date" v-bind:type="type" v-bind:photo="photo" v-bind:review="review" v-bind:etc="etc"
+                v-bind:contentlist="contentlist" v-on:city="cityset" v-on:type="typeset" v-on:sigungu="sigunguset"
+                v-on:name="nameset" v-on:date="dateset" v-on:photo="photoset" v-on:review="reviewset" v-on:etc="etcset">
+            </modal>
         </div>
 
     </div>
-     
+
     <div id="_footer">
         <footer-item></footer-item>
     </div>
@@ -51,4 +60,5 @@
 <script type="text/javascript" src="../js/main_count.js"></script>
 <script type="text/javascript" src="../js/main_review.js"></script>
 <script type="text/javascript" src="../js/main_sidebar.js"></script>
+
 </html>
