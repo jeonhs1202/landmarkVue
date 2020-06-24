@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landmark</title>
     <link rel="stylesheet" type="text/css" href="/css/registerPage.css">
 </head>
+
 <body>
     <div id="_container" class="container">
         <div class="logo-wrapper">
@@ -50,7 +52,8 @@
                                     <label>시군구</label>
                                     <select v-model="sigungu">
                                         <option disabled value="">시군구</option>
-                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">
+                                            {{ sigun.name }}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -73,7 +76,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
+                    <button type="submit" class="btn btn-green"
+                        v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
                 </div>
             </form>
         </div>
@@ -87,7 +91,7 @@
             data: function () {
                 return {
                     username: '',
-                    name:'',
+                    name: '',
                     email: '',
                     password: '',
                     passwordconfirm: '',
@@ -116,25 +120,27 @@
                     });
             },
             methods: {
-                submitForm: function(id, pw, name, email, event) {
-                    if(event){
-                        axios.get('http://49.50.161.45:8080/users', {
-                            params: {
-                                username: id,
-                                password: pw,
-                                name: name,
-                                email: email
-                            }
+                submitForm: function (id, pw, name, email, event) {
+                    if (event) {
+                        axios.post('http://49.50.161.45:8080/users', {
+                            username: id,
+                            password: pw,
+                            name: name,
+                            email: email
                         })
-                        .then(res => {
-                            //console.log(res.data);
-                            alert('회원가입이 완료되었습니다.');
-                            location.href = 'loginPage.html';
-                        });
+                            .then(res => {
+                                //console.log(res.data);
+                                alert('회원가입이 완료되었습니다.');
+                                location.href = 'loginPage.html';
+                            }).catch(ex => {
+                                console.log(ex);
+                                alert('회원가입에 실패했습니다.');
+                            });
                     }
                 }
             }
         });
     </script>
 </body>
+
 </html>
