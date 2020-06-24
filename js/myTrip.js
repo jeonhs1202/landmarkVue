@@ -2,7 +2,7 @@ var menu = {
     template: `<ul>
                     <div v-for="item in items">
                         <li>
-                        <button class="item" v-bind:class="[btnid == item.id ? 'clicked' : '']" v-on:click="passData(item.id, $event)">
+                        <button class="item" v-bind:id="item.id" v-bind:class="[btnid == item.id ? 'clicked' : '']" v-on:click="passData(item.id, $event); moveScroll(item.id);">
                             <div class="date">{{ item.createdTime }}</div>
                             <div class="name">{{ item.title }}</div>
                         </button>
@@ -12,9 +12,13 @@ var menu = {
     ,
     props: ['items', 'btnid'],
     methods: {
-        passData: function(id, event) {
-            if(event)
+        passData: function (id, event) {
+            if (event)
                 this.$emit('pass', id);
+        },
+        moveScroll: function (id) {
+            var element = document.getElementById(id);
+            element.scrollIntoView(true);
         }
     }
 }
@@ -42,7 +46,7 @@ var myTrip = new Vue({
         content: [],
         itemId: 0
     },
-    created: function(){
+    created: function () {
         let uri = window.location.href.split('?');
         if (uri.length == 2) {
             let vars = uri[1].split('=');
@@ -64,7 +68,7 @@ var myTrip = new Vue({
         'my-trip': trip
     },
     methods: {
-        showMyTrip: function(value){
+        showMyTrip: function (value) {
             this.itemId = value;
         }
     }
