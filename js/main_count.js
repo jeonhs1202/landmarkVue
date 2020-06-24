@@ -31,9 +31,8 @@ var myButton = new Vue({
         .then(res => { 
             this.posts = res.data;
             for(var i in this.posts){
-                this.count2level(this.posts[i].name,this.posts[i].count);
+                this.count2level(this.posts[i].name,this.posts[i].level);
             }
-            // console.log(this.posts[0].count);
             });
     },
     computed: {

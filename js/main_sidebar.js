@@ -31,7 +31,7 @@ var sideBar = new Vue({
             }
         }).then(res => {
             this.history = (res.data);
-            console.log(res.data);
+            //console.log(res.data);
         });
     },
     components: {
