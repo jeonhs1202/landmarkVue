@@ -2,6 +2,7 @@ var headItem = {
     props: {
       name: String,
       pageNum: Number,
+      userrole : Boolean
     },
     methods:{
         logout:function(){
@@ -29,7 +30,7 @@ var headItem = {
                 <img src="../img/landMarkSearch.png" class="menuImg" v-else>
                 관광지 검색
             </button>
-            <button class="menuButton" onclick="location.href='myLandMark.html'">
+            <button class="menuButton" onclick="location.href='myLandMark.html'" v-if="userrole">
                 <img src="../img/myLandMarkManageChecked.png" class="menuImg" v-if="pageNum=='3'">
                 <img src="../img/myLandMarkManage.png" class="menuImg" v-else>
                 내 관광지 관리
@@ -58,6 +59,13 @@ var headItem = {
     data: {
         name: '',
     },
+    computed:{
+        userrole: function(){
+            var temp = window.localStorage.getItem('authrole');
+            if (temp==="ROLE_ADMIN" || temp ==="ROLE_DEV"){return true;}
+            else{return false;};
+        }
+    },
     components: {
         'header-item': headItem,
     },
@@ -69,6 +77,11 @@ var headItem = {
             }
         })
         .then(res => { 
+            authRole = res.data.authorities[0].authority;
+            if(authRole != null){
+                window.localStorage.setItem('authrole',authRole);
+                
+            }
             this.name = res.data.name;
             // console.log(this.props);
             });

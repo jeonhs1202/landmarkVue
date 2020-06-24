@@ -179,6 +179,7 @@ var addMyButton = new Vue({
             }).then(res => {
                 if (res.data) {
                     alert('등록되었습니다.');
+                    window.location.href="../view/main.html"
                 } else {
                     alert('후기 등록에 실패하였습니다.');
                 }
