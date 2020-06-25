@@ -87,3 +87,50 @@
     width: 400px;
     height: 200px;
 }
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+table th {
+  font-size: 18px;
+}
+
+table th:first-of-type {
+  border-right: 1px solid #505050;
+}
+
+table tr {
+  text-align: center;
+  border-bottom: 1px solid #505050;
+}
+
+table tr:first-of-type {
+  border-top: 2px solid #404040;
+}
+
+table tr td {
+  padding: 5px;
+  font-size: 15px;
+}
+
+table tr td:first-of-type {
+  border-right: 1px solid #505050;
+}
+
+.btn-cover {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.btn-cover .page-btn {
+  width: 5rem;
+  height: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-cover .page-count {
+  padding: 0 1rem;
+}
