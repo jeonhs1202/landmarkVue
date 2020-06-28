@@ -1,12 +1,12 @@
 var qnabar = {
-    props:{
+    props: {
         type: String,
-        typelist:[],
+        typelist: [],
         who: String,
         what: String,
     },
-    template: 
-    `<div class="searchBar2">
+    template:
+        `<div class="searchBar2">
         <div class="searchBarItem">
             <select v-model="type">
                 <option disabled value="">분류</option>
@@ -22,22 +22,22 @@ var qnabar = {
         </div>
     </div>
     `,
-    methods:{
-        passData: function(type, who, what) {
-            if(event)
+    methods: {
+        passData: function (type, who, what) {
+            if (event)
                 this.$emit('type', type);
-                this.$emit('who', who);
-                this.$emit('what', what);
+            this.$emit('who', who);
+            this.$emit('what', what);
         }
     }
 }
 
 var addqna = {
-    props:{
-        typelist:[],
+    props: {
+        typelist: [],
     },
-    template: 
-    `<transition name="modal">
+    template:
+        `<transition name="modal">
         <div class="modal-mask-qna">
             <div class = "modal-wrapper-qna">
                 <div class = "modal-container-qna">
@@ -77,29 +77,103 @@ var addqna = {
     </transition>`
 }
 
+var qnalist = {
+    template:
+    `<div>
+        <table>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        <tr v-for="(qna, i) in paginatedData" :key="i">
+            <td>{{ qna.title }}</td>
+            <td>{{ qna.userId }}</td>
+        </tr>
+        </table>
+        <div class="btn-cover">
+        <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+            이전
+        </button>
+        <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+        <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+            다음
+        </button>
+        </div>
+    </div>`,
+    data() {
+        return {
+            pageNum: 0
+        }
+    },
+    props: {
+        listArray: {
+            type: Array,
+            required: true
+        },
+        pageSize: {
+            type: Number,
+            required: false,
+            default: 10
+        }
+    },
+    methods: {
+        nextPage() {
+            this.pageNum += 1;
+        },
+        prevPage() {
+            this.pageNum -= 1;
+        }
+    },
+    computed: {
+        pageCount() {
+            let listLeng = this.listArray.length,
+                listSize = this.pageSize,
+                page = Math.floor(listLeng / listSize);
+            page = Math.floor((listLeng - 1) / listSize) + 1;
+
+            return page;
+        },
+        paginatedData() {
+            const start = this.pageNum * this.pageSize,
+                end = start + this.pageSize;
+            return this.listArray.slice(start, end);
+        }
+    }
+}
 
 var qna = new Vue({
     el: '#qna',
     data: {
         type: '',
-        typelist:['여행지 등록', '내 여행 보기', '관광지 검색', '내 관광지 관리'],
+        typelist: ['여행지 등록', '내 여행 보기', '관광지 검색', '내 관광지 관리'],
         who: '',
         what: '',
-        showModal: false
+        showModal: false,
+        qnalist: []
     },
     components: {
         'qna-bar': qnabar,
         'add-qna': addqna,
+        'qna-list': qnalist
     },
-    methods:{
-        typeset: function(value){
+    methods: {
+        typeset: function (value) {
             this.type = value;
         },
-        whoset: function(value){
+        whoset: function (value) {
             this.who = value;
         },
-        whatset: function(value){
+        whatset: function (value) {
             this.what = value;
         },
     },
+    created: function() {
+        axios.post('http://49.50.161.45:8080/qna/search')
+        .then(res => {
+            console.log(res);
+            this.qnalist = (res.data);
+        }).catch (ex => {
+            console.log(ex);
+        });
+    }
 })

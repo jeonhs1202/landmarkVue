@@ -24,6 +24,7 @@
             <qna-bar v-bind:type="type" v-bind:who="who" v-bind:what="what" v-bind:typelist="typelist"
             v-on:type="typeset" v-on:who="whoset" v-on:what="whatset"></qna-bar>
             {{type}} {{who}}에 있는 {{what}}을 검색합니다.            
+            <qna-list v-bind:list-array="qnalist"></qna-list>
             <div class="createbutton">
                 <button id="show-modal" class="createbtn" @click="showModal = true">
                 작성하기</button>
