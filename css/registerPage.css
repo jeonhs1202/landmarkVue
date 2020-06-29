@@ -8,7 +8,7 @@ label {
 
 .container {
     margin: 0 auto;
-    width: 800px;
+    width: 600px;
     height: 90vh;
     overflow: hidden;
     background-color: white;
@@ -17,7 +17,7 @@ label {
   
 .logo-wrapper {
     text-align: center;
-    width: 800px;
+    width: 600px;
   }
 
 .logo {
@@ -25,14 +25,27 @@ label {
   }
   
 .register-form {
-    height: 90vh;
-    width: 900px;
+    height: 75vh;
+    width: 580px;
+    overflow: auto;
+    margin-left: 20px;
   }
+
+.register-form::-webkit-scrollbar {
+    width: 10px;
+}
+
+.register-form::-webkit-scrollbar-thumb {
+    background-color: #6CAC9D;
+}
+
+.register-form::-webkit-scrollbar-track {
+    background-color: #F2F2F2;
+}
   
 .default {
     height: 100%;
     overflow-x: hidden;
-    float: center;
     margin: 0 auto;
     width: 500px;
   }
@@ -41,9 +54,13 @@ label {
     margin: 0 0 15px;
   }
 
+  .default .form-group {
+    margin-left: 130px;
+  }
+
   .form-group input {
     display: block;
-    width: 400px;
+    width: 200px;
     background-color: #F2F2F2;
     border: 0;
     outline: none;
@@ -53,8 +70,8 @@ label {
 }
   
 input[type=checkbox]:checked + .level2-form {
-    width: 900px;
-    height: 130px;
+    width: 460px;
+    height: 115px;
   
     -ms-transition-duration: 1s;
     -webkit-transition-duration: 1s;
@@ -62,11 +79,20 @@ input[type=checkbox]:checked + .level2-form {
     -o-transition-duration: 1s;
     transition-duration: 1s;
   }
+
+.level2 {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.lv2Label {
+  margin-left: 130px;
+}
   
 .level2-form {
     overflow: hidden;
     height: 0px;
-    margin: 20px auto;
+    margin: 20px 0 0 20px;
   }
   
 .level2-left {
@@ -89,13 +115,12 @@ input[type=checkbox]:checked + .level2-form {
   
 .btn-green{
     background-color: #7CAE88;
-    margin: 10px;
     color: #ffffff;
     font-weight: bold;
     width: 80px;
     height: 30px;
     border: none;
-    margin-left: 170px;
+    margin: 10px 0 0 225px;
   }
 
   .btn-green-for-mypage{

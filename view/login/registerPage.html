@@ -14,74 +14,109 @@
         <div class="register-form">
             <form @submit.prevent="submitForm">
                 <div class="default">
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input type="text" class="form-control" id="username" v-model="username">
-                    </div>
-                    <div class="form-group">
-                        <label>PW</label>
-                        <input type="password" class="form-control" id="password" v-model="password">
-                    </div>
+                    <validation-provider name="ID" rules="required|minmax:3,8" v-slot="{ errors }">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" id="username" v-model="username">
+                            <span>{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+                    <validation-provider name="PW" rules="required" v-slot="{ errors }">
+                        <div class="form-group">
+                            <label>PW</label>
+                            <input type="password" class="form-control" id="password" v-model="password">
+                            <span>{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
                     <div class="form-group">
                         <label>PW 확인</label>
                         <input type="password" class="form-control" id="password-confirm" v-model="passwordconfirm">
                     </div>
-                    <div class="form-group">
-                        <label>이름</label>
-                        <input type="text" class="form-control" id="name" v-model="name">
-                    </div>
-                    <div class="form-group">
-                        <label>메일</label>
-                        <input type="email" class="form-control" id="email" v-model="email">
-                    </div>
-                    <div class="level2">
-                        <label>저는 관광지를 운영합니다.</label>
-                        <input type="checkbox">
-                        <div class="level2-form">
-                            <div class="level2-left">
-                                <div class="form-group">
-                                    <label>지역</label>
-                                    <select v-model="city">
-                                        <option disabled value="">지역</option>
-                                        <option v-for="citi in citylist" v-bind:value="citi">{{ citi.name }}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>시군구</label>
-                                    <select v-model="sigungu">
-                                        <option disabled value="">시군구</option>
-                                        <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>분류</label>
-                                    <select v-model="landmarkType">
-                                        <option disabled value="">분류</option>
-                                        <option v-for="content in contentlist">{{ content.name }}</option>
-                                    </select>
-                                </div>
+                    <validation-provider name="이름" rules="required" v-slot="{ errors }">
+                        <div class="form-group">
+                            <label>이름</label>
+                            <input type="text" class="form-control" id="name" v-model="name">
+                            <span>{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+                    <validation-provider name="Email" rules="required" v-slot="{ errors }">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" id="email" v-model="email">
+                            <span>{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+                </div>
+                <div class="level2">
+                    <label class="lv2Label">저는 관광지를 운영합니다.</label>
+                    <input type="checkbox">
+                    <div class="level2-form">
+                        <div class="level2-left">
+                            <div class="form-group">
+                                <label>지역</label>
+                                <select v-model="city">
+                                    <option disabled value="">지역</option>
+                                    <option v-for="citi in citylist" v-bind:value="citi">{{ citi.name }}</option>
+                                </select>
                             </div>
-                            <div class="level2-right">
-                                <div class="form-group">
-                                    <label>URL(옵션)</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
+                            <div class="form-group">
+                                <label>시군구</label>
+                                <select v-model="sigungu">
+                                    <option disabled value="">시군구</option>
+                                    <option v-for="sigun in sigungulist" v-if="city.code == sigun.areaCode">{{ sigun.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>분류</label>
+                                <select v-model="landmarkType">
+                                    <option disabled value="">분류</option>
+                                    <option v-for="content in contentlist">{{ content.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="level2-right">
+                            <div class="form-group">
+                                <label>URL(옵션)</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="notice" readonly="readonly" onfocus="this.blur()">운영자일 경우, 내부 심사 진행 후
 관광지 등록이 진행됩니다.</textarea>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
                 </div>
+                <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
             </form>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vee-validate@3.3.6/dist/vee-validate.min.js"></script>
     <script>
+        Vue.use(VeeValidate, {
+            locale: 'ko'
+        });
+        Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
+        VeeValidate.extend('required', {
+                validate(value) {
+                    return {
+                        required: true,
+                        valid: ['', null, undefined].indexOf(value) === -1
+                    };
+                },
+                computesRequired: true,
+                message: '{_field_}은/는 필수입력란 입니다.'
+            });
+        VeeValidate.extend('minmax', {
+            validate(value, { min, max }) {
+                return value.length >= min && value.length <= max
+            },
+            params: ['min', 'max'],
+            message: '{_field_}는 {min}자 이상 {max}자 이하여야 합니다.'
+        });
+
         new Vue({
             el: '#_container',
             data: function () {
