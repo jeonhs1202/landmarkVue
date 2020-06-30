@@ -58,6 +58,11 @@ label {
     margin-left: 130px;
   }
 
+  .form-group span {
+    color: #FF5A5A;
+    font-weight: 200;
+  }
+
   .form-group input {
     display: block;
     width: 200px;

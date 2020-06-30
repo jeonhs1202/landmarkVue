@@ -12,34 +12,38 @@
             <img class="logo" src="/img/logo2.png">
         </div>
         <div class="register-form">
+            <validation-observer ref="form">
             <form @submit.prevent="submitForm">
                 <div class="default">
-                    <validation-provider name="ID" rules="required|minmax:3,8" v-slot="{ errors }">
+                    <validation-provider name="ID" rules="required|minmax:3,8|id" v-slot="{ errors }">
                         <div class="form-group">
                             <label>ID</label>
                             <input type="text" class="form-control" id="username" v-model="username">
                             <span>{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
-                    <validation-provider name="PW" rules="required" v-slot="{ errors }">
+                    <validation-provider name="PW" rules="required|password|minmax:8,16" vid="password" v-slot="{ errors }">
                         <div class="form-group">
                             <label>PW</label>
                             <input type="password" class="form-control" id="password" v-model="password">
                             <span>{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
+                    <validation-provider name="PW확인" rules="required|confirmed:@password" v-slot="{ errors }">
                     <div class="form-group">
                         <label>PW 확인</label>
-                        <input type="password" class="form-control" id="password-confirm" v-model="passwordconfirm">
+                        <input type="password" class="form-control" id="confirmation" v-model="confirmation">
+                        <span>{{ errors[0] }}</span>
                     </div>
-                    <validation-provider name="이름" rules="required" v-slot="{ errors }">
+                    </validation-provider>
+                    <validation-provider name="이름" rules="required|name" v-slot="{ errors }">
                         <div class="form-group">
                             <label>이름</label>
                             <input type="text" class="form-control" id="name" v-model="name">
                             <span>{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
-                    <validation-provider name="Email" rules="required" v-slot="{ errors }">
+                    <validation-provider name="Email" rules="required|email" v-slot="{ errors }">
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" id="email" v-model="email">
@@ -86,8 +90,9 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-green" v-on:click="submitForm(username, password, name, email, $event)">회원가입</button>
+                <button type="submit" class="btn btn-green">회원가입</button>
             </form>
+            </validation-observer>
         </div>
     </div>
 
@@ -95,20 +100,19 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vee-validate@3.3.6/dist/vee-validate.min.js"></script>
     <script>
-        Vue.use(VeeValidate, {
-            locale: 'ko'
-        });
+        Vue.use(VeeValidate);
         Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
+        Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
         VeeValidate.extend('required', {
-                validate(value) {
-                    return {
-                        required: true,
-                        valid: ['', null, undefined].indexOf(value) === -1
-                    };
-                },
+            validate(value) {
+                return {
+                    required: true,
+                    valid: ['', null, undefined].indexOf(value) === -1
+                };
+            },
                 computesRequired: true,
                 message: '{_field_}은/는 필수입력란 입니다.'
-            });
+        });
         VeeValidate.extend('minmax', {
             validate(value, { min, max }) {
                 return value.length >= min && value.length <= max
@@ -116,6 +120,43 @@
             params: ['min', 'max'],
             message: '{_field_}는 {min}자 이상 {max}자 이하여야 합니다.'
         });
+        VeeValidate.extend('id', {
+            validate(value) {
+                if (/^.*(?=.*[`~!@#$%^&*|\\\'\";:\/?]).*$/.test(value))
+                    return false
+                else
+                    return true
+            },
+            message: '{_field_}에는 특수문자 허용이 불가합니다.'
+        });
+        VeeValidate.extend('password', {
+            validate(value) {
+                return /^.*(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$@$!%*#?&]).*$/.test(value)
+            },
+            message: '{_field_}는 대소문자, 숫자와 특수문자($@$!%*#?&)를 포함해야합니다.',
+        });
+        VeeValidate.extend('confirmed', {
+            params: ['target'],
+            validate(value, { target }) {
+                return value === target;
+            },
+            message: '입력하신 PW와 동일하지 않습니다.',
+        });
+        VeeValidate.extend('name', {
+            validate(value) {
+                if(/^.*(?=.*[0-9]).*$/.test(value) || /^.*(?=.*[`~!@#$%^&*|\\\'\";:\/?]).*$/.test(value))
+                    return false
+                else
+                    return true
+            },
+            message: '{_field_}에는 문자만 허용됩니다.'
+        });
+        VeeValidate.extend('email', {
+                validate(value) {
+                    return /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/.test(value)
+                },
+                message: '유효한 이메일 형식이 아닙니다.'
+            });
 
         new Vue({
             el: '#_container',
@@ -125,7 +166,7 @@
                     name:'',
                     email: '',
                     password: '',
-                    passwordconfirm: '',
+                    confirmation: '',
                     contentlist: [],
                     citylist: [],
                     sigungulist: [],
@@ -150,22 +191,23 @@
                     });
             },
             methods: {
-                submitForm: function(id, pw, name, email, event) {
-                    if(event){
-                        axios.get('http://49.50.161.45:8080/users', {
-                            params: {
-                                username: id,
-                                password: pw,
-                                name: name,
-                                email: email
-                            }
+                submitForm: function() {
+                    this.$refs.form.validate().then(success => {
+                        if(!success){
+                            return;
+                        }
+                        axios.post('http://49.50.161.45:8080/users', {
+                            username: this.username,
+                            password: this.password,
+                            name: this.name,
+                            email: this.email
                         })
                         .then(res => {
-                            //console.log(res.data);
+                            console.log(res.data);
                             alert('회원가입이 완료되었습니다.');
-                            location.href = 'loginPage.html';
-                        });
-                    }
+                            //location.href = 'loginPage.html';
+                        })
+                    })
                 }
             }
         });
