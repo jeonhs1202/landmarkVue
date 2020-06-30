@@ -39,7 +39,70 @@ var searchBar = {
     }
 }
 
+var landmarklist = {
+    template:
+        `<div>
+        <table>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        <tr v-for="(lm, i) in paginatedData" :key="i">
+            <td>{{ lm.addr1 }}</td>
+            <td>{{ lm.title }}</td>
+            <td>{{ lm.modifiedTime }}</td>
+        </tr>
+        </table>
+        <div class="btn-cover">
+        <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+            이전
+        </button>
+        <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+        <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+            다음
+        </button>
+        </div>
+    </div>`,
+    data() {
+        return {
+            pageNum: 0
+        }
+    },
+    props: {
+        listArray: {
+            type: Array,
+            required: true
+        },
+        pageSize: {
+            type: Number,
+            required: false,
+            default: 10
+        }
+    },
+    methods: {
+        nextPage() {
+            this.pageNum += 1;
+        },
+        prevPage() {
+            this.pageNum -= 1;
+        }
+    },
+    computed: {
+        pageCount() {
+            let listLeng = this.listArray.length,
+                listSize = this.pageSize,
+                page = Math.floor(listLeng / listSize);
+            page = Math.floor((listLeng - 1) / listSize) + 1;
 
+            return page;
+        },
+        paginatedData() {
+            const start = this.pageNum * this.pageSize,
+                end = start + this.pageSize;
+            return this.listArray.slice(start, end);
+        }
+    }
+}
 
 var searchPgage = new Vue({
     el: '#_searchPage',
@@ -51,27 +114,33 @@ var searchPgage = new Vue({
         sigungulist: [],
         sigungu: '',
         landMarkType: '',
-        val: ''
+        val: '',
+        landmarklist: []
     },
     created: function() {
-        const baseURI = 'http://49.50.161.45:8080/code'
-        axios.get(`${baseURI}/content-type`)
+        const baseURI = 'http://49.50.161.45:8080'
+        axios.get(`${baseURI}/code/content-type`)
             .then(res => {
                 this.contentlist = (res.data);
                 // console.log(this.contentlist);
             });
-        axios.get(`${baseURI}/area`)
+        axios.get(`${baseURI}/code/area`)
             .then(res => {
                 this.citylist = (res.data);
                 // console.log(this.citylist);
             });
-        axios.get(`${baseURI}/sigungu`)
+        axios.get(`${baseURI}/code/sigungu`)
             .then(res => {
                 this.sigungulist = (res.data);
                 // console.log(this.sigungulist);
             });
-        }
-    ,
+        axios.post(`${baseURI}/search`, {
+            contentTypeId: 12
+        })
+        .then(res => {
+            this.landmarklist = (res.data);
+        });
+    },
     methods: {
         typeset: function(value){
             this.landMarkType = value;
@@ -87,6 +156,7 @@ var searchPgage = new Vue({
         }
     },
     components: {
-        'search-bar': searchBar
+        'search-bar': searchBar,
+        'landmark-list': landmarklist
     }
 })
