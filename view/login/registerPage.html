@@ -18,7 +18,10 @@
                     <validation-provider name="ID" rules="required|minmax:3,8|id" v-slot="{ errors }">
                         <div class="form-group">
                             <label>ID</label>
+                            <div>
                             <input type="text" class="form-control" id="username" v-model="username">
+                            <button class="idCheck" type="button" v-on:click="checkID()">중복확인</button>
+                            </div>
                             <span>{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
@@ -46,7 +49,10 @@
                     <validation-provider name="Email" rules="required|email" v-slot="{ errors }">
                         <div class="form-group">
                             <label>Email</label>
+                            <div>
                             <input type="email" class="form-control" id="email" v-model="email">
+                            <button class="emailCheck">이메일 확인</button>
+                            </div>
                             <span>{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
@@ -203,11 +209,24 @@
                             email: this.email
                         })
                         .then(res => {
-                            console.log(res.data);
+                            //console.log(res.data);
                             alert('회원가입이 완료되었습니다.');
-                            //location.href = 'loginPage.html';
-                        })
+                            location.href = 'loginPage.html';
+                        });
                     })
+                },
+                checkID: function() {
+                    axios.get('http://49.50.161.45:8080/users/check/account', {
+                        params: {
+                            account: this.username
+                        },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => {
+                        console.log(res.data);
+                    });
                 }
             }
         });

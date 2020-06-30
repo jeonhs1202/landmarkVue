@@ -71,7 +71,10 @@ label {
     outline: none;
     line-height: 30px;
     font-size: 14px;
-    padding-left: 5px;
+}
+
+.form-group input:first-child {
+  display: inline;
 }
   
 input[type=checkbox]:checked + .level2-form {
@@ -119,22 +122,29 @@ input[type=checkbox]:checked + .level2-form {
   }
   
 .btn-green{
-    background-color: #7CAE88;
-    color: #ffffff;
-    font-weight: bold;
     width: 80px;
-    height: 30px;
-    border: none;
     margin: 10px 0 0 225px;
   }
 
   .btn-green-for-mypage{
+    width: 80px;
+    margin: 10px 0 0 0;
+  }
+
+.idCheck {
+    width: 80px;
+    margin: 0 auto;
+}
+
+.emailCheck {
+    width: 90px;
+    margin: 0 auto;
+}
+
+button {
     background-color: #7CAE88;
-    margin: 10px;
     color: #ffffff;
     font-weight: bold;
-    width: 80px;
     height: 30px;
     border: none;
-    margin-left: 170px;
-  }
+}
