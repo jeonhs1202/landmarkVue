@@ -41,26 +41,27 @@ var searchBar = {
 
 var landmarklist = {
     template:
-        `<div>
+    `<div>
         <table>
-        <tr>
-            <th>제목</th>
-            <th>작성자</th>
-        </tr>
-        <tr v-for="(lm, i) in paginatedData" :key="i">
-            <td>{{ lm.addr1 }}</td>
-            <td>{{ lm.title }}</td>
-            <td>{{ lm.modifiedTime }}</td>
-        </tr>
+            <tr>
+                <th>작성시각</th>
+                <th>관광지 이름</th>
+                <th>주소</th>
+            </tr>
+            <tr v-for="(lm, i) in paginatedData" :key="i">
+                <td>{{ lm.modifiedTime }}</td>
+                <td>{{ lm.title }}</td>
+                <td>{{ lm.addr1 }}</td>
+            </tr>
         </table>
         <div class="btn-cover">
-        <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-            이전
-        </button>
-        <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-        <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
-            다음
-        </button>
+            <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+                이전
+            </button>
+            <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+            <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+                다음
+            </button>
         </div>
     </div>`,
     data() {

@@ -41,3 +41,65 @@
     border-radius: 5px 5px 5px 5px;   
     font-size:15px;
 }
+
+table {
+  width: 1000px;
+  height: 380px;
+  border-collapse: collapse;
+  margin: 10px auto;
+  table-layout: fixed;
+}
+
+table th {
+  font-size: 18px;
+}
+
+table th:first-of-type {
+  border-right: 1px solid #505050;
+  width: 200px;
+}
+
+table th:last-of-type {
+  border-left: 1px solid #505050;
+  width: 350px;
+}
+
+table tr {
+  text-align: center;
+  border-bottom: 1px solid #505050;
+}
+
+table tr:first-of-type {
+  border-top: 2px solid #404040;
+}
+
+table tr td {
+  padding: 5px;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table tr td:first-of-type {
+  border-right: 1px solid #505050;
+}
+
+table tr td:last-of-type {
+  border-left: 1px solid #505050;
+}
+
+.btn-cover {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.btn-cover .page-btn {
+  width: 5rem;
+  height: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-cover .page-count {
+  padding: 0 1rem;
+}
