@@ -44,7 +44,7 @@
 
 table {
   width: 1000px;
-  height: 380px;
+  max-height: 380px;
   border-collapse: collapse;
   margin: 10px auto;
   table-layout: fixed;

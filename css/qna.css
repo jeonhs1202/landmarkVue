@@ -1,3 +1,36 @@
+.searchBar2{
+    display:table;
+    background-color: rgb(240, 239, 239);
+    height: 60px;
+    width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 20px;
+}
+.searchBarItem{
+    display: table-cell;
+    text-align: center;
+    vertical-align: center;
+    padding-top: 15px;
+}
+.searchBarItem select{
+    width: 100px;
+    height: 30px;   
+}
+.searchBarItem input{
+    width: 200px;
+    height: 22px;
+    border-radius: 5px 5px 5px 5px;   
+}
+.searchBarItem button{
+    width: 60px;
+    height: 30px;
+    border-radius: 5px 5px 5px 5px;   
+    font-size:15px;
+}
+
 .createbutton{
     position: absolute;
     right: 20px;
@@ -88,32 +121,41 @@
     height: 200px;
 }
 
-table {
-  width: 500px;
-  height: 380px;
+.notice table {
+  width: 1000px;
+  max-height: 380px;
   border-collapse: collapse;
   margin: 10px auto;
 }
 
-table th {
+.notice table th {
   font-size: 18px;
 }
 
-table th:first-of-type {
+.notice table th:first-of-type {
   border-right: 1px solid #505050;
   width: 200px;
 }
 
-table tr {
+.notice table th:last-of-type {
+  border-left: 1px solid #505050;
+  width: 200px;
+}
+
+.notice table tr {
   text-align: center;
   border-bottom: 1px solid #505050;
 }
 
-table tr:first-of-type {
+.notice table tr:first-of-type {
   border-top: 2px solid #404040;
 }
 
-table tr td {
+.notice table tr:first-of-type {
+  border-top: 2px solid #404040;
+}
+
+.notice table tr td {
   padding: 5px;
   font-size: 15px;
   white-space: nowrap;
@@ -121,8 +163,12 @@ table tr td {
   text-overflow: ellipsis;
 }
 
-table tr td:first-of-type {
+.notice table tr td:first-of-type {
   border-right: 1px solid #505050;
+}
+
+.notice table tr td:last-of-type {
+  border-left: 1px solid #505050;
 }
 
 .btn-cover {

@@ -79,13 +79,16 @@ var addqna = {
 
 var qnalist = {
     template:
-    `<div>
+    `<div class="notice">
         <table>
         <tr>
+            <th>작성시각</th>
             <th>제목</th>
             <th>작성자</th>
         </tr>
         <tr v-for="(qna, i) in paginatedData" :key="i">
+            <td v-if="qna.modifiedTime === null">{{ qna.creatiedTime }}</td>
+            <td v-else>{{ qna.modifiedTime }}</td>
             <td>{{ qna.title }}</td>
             <td>{{ qna.userId }}</td>
         </tr>
