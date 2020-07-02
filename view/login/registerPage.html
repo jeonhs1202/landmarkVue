@@ -51,7 +51,7 @@
                             <label>Email</label>
                             <div>
                             <input type="email" class="form-control" id="email" v-model="email">
-                            <button class="emailCheck">이메일 확인</button>
+                            <button type="button" v-on:click="checkEmail()" class="emailCheck">이메일 확인</button>
                             </div>
                             <span>{{ errors[0] }}</span>
                         </div>
@@ -223,6 +223,21 @@
                         headers: {
                             'Content-Type': 'application/json'
                         }
+                    })
+                    .then(res => {
+                        //console.log(res.data);
+                        if(res.data)
+                            alert('사용 중인 ID입니다.');
+                        else
+                            alert('사용 가능한 ID입니다.');
+                    });
+                },
+                checkEmail: function () {
+                    axios.post('http://49.50.161.45:8080/users/cert', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        email: this.email
                     })
                     .then(res => {
                         console.log(res.data);

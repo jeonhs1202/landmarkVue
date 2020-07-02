@@ -89,9 +89,10 @@
 }
 
 table {
-  width: 90%;
+  width: 500px;
+  height: 380px;
   border-collapse: collapse;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 table th {
@@ -100,6 +101,7 @@ table th {
 
 table th:first-of-type {
   border-right: 1px solid #505050;
+  width: 200px;
 }
 
 table tr {
@@ -114,6 +116,9 @@ table tr:first-of-type {
 table tr td {
   padding: 5px;
   font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 table tr td:first-of-type {
