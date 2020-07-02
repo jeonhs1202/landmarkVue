@@ -56,25 +56,37 @@ var addqna = {
                                 </td>
                             </tr>
                             <tr>
-                                <th>작성자</th>
-                                <td>우리집</td>
+                                <th>제목</th>
+                                <td><input type="text" id="title" v-model="title"></td>
                             </tr>
                             <tr>
                                 <th>내용</th>
                                 <td>
-                                    <textarea class="qna-textarea"></textarea>
+                                    <textarea class="qna-textarea" id="content" v-model="content"></textarea>
                                 </td>
                             </tr>
                         </table>
                     </div>
 
                     <div class = "model-save-qna">
-                        <button @click="$emit('close')">작성</button>
+                        <button @click="passData(title, content); $emit('close');">작성</button>
+                        <button @click="$emit('close')">닫기</button>
                     </div>    
                 </div>
             </div>  
         </div>
-    </transition>`
+    </transition>`,
+    props: {
+        title:'',
+        content:''
+    },
+    passData: function (title, content) {
+        if (event) {
+            this.$emit('title', title);
+            this.$emit('content', content);
+            this.$emit('pass');
+        }
+    }
 }
 
 var qnalist = {
@@ -152,7 +164,9 @@ var qna = new Vue({
         who: '',
         what: '',
         showModal: false,
-        qnalist: []
+        qnalist: [],
+        title: '',
+        content: ''
     },
     components: {
         'qna-bar': qnabar,
@@ -169,11 +183,27 @@ var qna = new Vue({
         whatset: function (value) {
             this.what = value;
         },
+        titleset: function(value) {
+            this.title = value;
+        },
+        contentset: function(value) {
+            this.content = value;
+        },
+        addQna: function() {
+            axios.post('http://49.50.161.45:8080/qna', {
+                title: this.title,
+                content: this.content
+            }).then(res => {
+                console.log(res);
+            }).catch(ex => {
+                console.log(ex);
+            });
+        }
     },
     created: function() {
         axios.post('http://49.50.161.45:8080/qna/search')
         .then(res => {
-            console.log(res);
+            //console.log(res);
             this.qnalist = (res.data);
         }).catch (ex => {
             console.log(ex);

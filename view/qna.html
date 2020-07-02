@@ -27,8 +27,8 @@
             <div class="createbutton">
                 <button id="show-modal" class="createbtn" @click="showModal = true">
                 작성하기</button>
-                <add-qna v-bind:typelist="typelist" 
-                    v-if="showModal" @close="showModal = false"></add-qna>
+                <add-qna v-bind:typelist="typelist" v-bind:title="title" :content="content" @pass="addQna"
+                    v-if="showModal" @close="showModal = false" @title="titleset" @content="contentset"></add-qna>
             </div>
         </div>
     </div> 
