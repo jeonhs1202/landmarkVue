@@ -6,14 +6,14 @@ var searchBar = {
         citylist: { code: '', name: '' },
         sigungulist: { areaCode: '', code: '', name: '' },
         sigungu: String,
-        val: String
+        val: null
     },
     template: 
     `<div class="searchBar">
         <div class="searchBarItem">
             <select v-model="landMarkType">
                 <option disabled value="">분류</option>
-                <option v-for="content in contentlist">{{ content.name }}</option>
+                <option v-for="content in contentlist" v-bind:value="content">{{ content.name }}</option>
             </select>
             <select v-model="city">
                 <option disabled value="">지역</option>
@@ -21,7 +21,7 @@ var searchBar = {
             </select>
             <select v-model="sigungu">
                 <option disabled value="">시군구</option>
-                <option v-for="sigungu in sigungulist" v-if="city.code == sigungu.areaCode">{{ sigungu.name }}</option>
+                <option v-for="sigungu in sigungulist" v-if="city.code == sigungu.areaCode" v-bind:value="sigungu">{{ sigungu.name }}</option>
             </select>
             
             <input type="text" v-model="val" placeholder="검색어를 입력하세요">
@@ -30,11 +30,11 @@ var searchBar = {
     </div>`,
     methods:{
         passData: function(type, city, sigungu, val) {
-            if(event)
-                this.$emit('type', type);
-                this.$emit('city', city);
-                this.$emit('sigungu', sigungu);
-                this.$emit('val', val);
+            this.$emit('type', type);
+            this.$emit('city', city);
+            this.$emit('sigungu', sigungu);
+            this.$emit('val', val);
+            this.$emit('pass');
         }
     }
 }
@@ -71,7 +71,8 @@ var landmarklist = {
                 <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
                 <div class="time" v-else>{{ l.modifiedTime }}</div>
                 <hr class="line">
-                <img v-if="l.firstImage1 == null" src="../img/temptrip.jpg" class="landmarkImg">
+                <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="landmarkImg">
+                <img v-else src="l.firstImage">
                 <div class="content">{{ l.overview }}</div>
                 <button type="button" @click="returnList">목록</button>
             </div>
@@ -137,7 +138,7 @@ var searchPgage = new Vue({
         sigungulist: [],
         sigungu: '',
         landMarkType: '',
-        val: '',
+        val: null,
         landmarklist: []
     },
     created: function() {
@@ -176,6 +177,18 @@ var searchPgage = new Vue({
         },
         valset: function(value){
             this.val = value;
+        },
+        search: function(){
+            axios.post('http://49.50.161.45:8080/search', {
+                contentTypeId: this.landMarkType.contentTypeId,
+                areaCode: this.city.code,
+                sigunsuCode: this.sigungu.code,
+                keyword: this.val
+            })
+            .then(res => {
+                console.log(res.data);
+                this.landmarklist = (res.data);
+            });
         }
     },
     components: {
