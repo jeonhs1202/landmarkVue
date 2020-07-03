@@ -8,18 +8,6 @@
     margin-left: 20px;
 }
 
-.travel button {
-    background: none;
-    border: 3px solid rgb(226, 238, 197);
-    border-radius: 5px;
-    color: black;
-    font-size: 15pt;
-    padding: 10px;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-}
-
 .tripImg {
     width: 350px;
     height: 350px;

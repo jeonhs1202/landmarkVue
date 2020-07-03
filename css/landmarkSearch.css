@@ -98,8 +98,76 @@ table tr td:last-of-type {
   width: 5rem;
   height: 2rem;
   letter-spacing: 0.5px;
+  border: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgb(129, 168, 146);
+  color: white;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.page-btn:hover {
+  background-color: white;
+  color: rgb(129, 168, 146);
+  border: solid 1.5px rgb(129, 168, 146);
 }
 
 .btn-cover .page-count {
   padding: 0 1rem;
+}
+
+.landmark li {
+    list-style: none;
+    float: left;
+    margin-left: 20px;
+}
+
+.landmarkImg {
+    width: 350px;
+    height: 350px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.time {
+    color: gray;
+}
+
+.line {
+    border: none;
+    height: 0.8px;
+    background-color: rgb(192, 192, 192);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.qnaBtn {
+  border: none;
+  background-color: white;
+  font-size: 11pt;
+}
+
+.qnaBtn:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+.landmark button {
+  letter-spacing: 1px;
+  border: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(129, 168, 146);
+  color: white;
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 150px;
+}
+
+.landmark button:hover {
+  background-color: white;
+  color: rgb(129, 168, 146);
+  border: solid 1.5px rgb(129, 168, 146);
 }

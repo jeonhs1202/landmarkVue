@@ -41,7 +41,7 @@ var searchBar = {
 
 var landmarklist = {
     template:
-    `<div>
+    `<div v-if="!isshown">
         <table>
             <tr>
                 <th>작성시각</th>
@@ -50,7 +50,7 @@ var landmarklist = {
             </tr>
             <tr v-for="(lm, i) in paginatedData" :key="i">
                 <td>{{ lm.modifiedTime }}</td>
-                <td>{{ lm.title }}</td>
+                <td><button type="button" class="qnaBtn" @click="returnID(lm.id)">{{ lm.title }}</button></td>
                 <td>{{ lm.addr1 }}</td>
             </tr>
         </table>
@@ -63,10 +63,25 @@ var landmarklist = {
                 다음
             </button>
         </div>
+    </div>
+    <div v-else class="landmark">
+        <li v-for="l in listArray">
+            <div v-if="landmarkid === l.id">
+                <div class="title">{{ l.title }}</div>
+                <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
+                <div class="time" v-else>{{ l.modifiedTime }}</div>
+                <hr class="line">
+                <img v-if="l.firstImage1 == null" src="../img/temptrip.jpg" class="landmarkImg">
+                <div class="content">{{ l.overview }}</div>
+                <button type="button" @click="returnList">목록</button>
+            </div>
+        </li>
     </div>`,
     data() {
         return {
-            pageNum: 0
+            pageNum: 0,
+            isshown: false,
+            landmarkid: 0
         }
     },
     props: {
@@ -86,6 +101,14 @@ var landmarklist = {
         },
         prevPage() {
             this.pageNum -= 1;
+        },
+        returnID: function(value) {
+            this.landmarkid = value;
+            this.isshown = true;
+        },
+        returnList: function() {
+            this.landmarkid = 0;
+            this.isshown = false;
         }
     },
     computed: {
@@ -108,7 +131,6 @@ var landmarklist = {
 var searchPgage = new Vue({
     el: '#_searchPage',
     data: {
-        name: '보현',
         city: '',
         contentlist: [],
         citylist: [],
