@@ -80,11 +80,13 @@ var addqna = {
         title:'',
         content:''
     },
-    passData: function (title, content) {
-        if (event) {
-            this.$emit('title', title);
-            this.$emit('content', content);
-            this.$emit('pass');
+    methods: {
+        passData: function (title, content) {
+            if (event) {
+                this.$emit('title', title);
+                this.$emit('content', content);
+                this.$emit('pass');
+            }
         }
     }
 }
