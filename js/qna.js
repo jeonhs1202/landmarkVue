@@ -124,9 +124,9 @@ var qnalist = {
                 <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
                 <div class="time" v-else>{{ l.modifiedTime }}</div>
                 <hr class="line">
-                <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="landmarkImg">
+                <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="qnaImg">
                 <img v-else src="l.firstImage">
-                <div class="content">{{ l.overview }}</div>
+                <div class="content">{{ l.content }}</div>
                 <button type="button" @click="returnList">목록</button>
             </div>
         </li>
@@ -219,17 +219,22 @@ var qna = new Vue({
             axios.post('http://49.50.161.45:8080/qna', {
                 title: this.title,
                 content: this.content
+            },{
+                headers: {
+                    'auth-token': window.localStorage.getItem('token')
+                }
             }).then(res => {
-                console.log(res);
+                //console.log(res);
             }).catch(ex => {
                 console.log(ex);
+                alert('문의사항 등록에 실패하였습니다.');
             });
         }
     },
     created: function() {
         axios.post('http://49.50.161.45:8080/qna/search')
         .then(res => {
-            console.log(res);
+            //console.log(res);
             this.qnalist = (res.data);
         }).catch (ex => {
             console.log(ex);
