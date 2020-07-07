@@ -93,7 +93,7 @@ var addqna = {
 
 var qnalist = {
     template:
-    `<div class="notice">
+    `<div v-if="!isshown" class="notice">
         <table>
         <tr>
             <th>작성시각</th>
@@ -103,7 +103,7 @@ var qnalist = {
         <tr v-for="(qna, i) in paginatedData" :key="i">
             <td v-if="qna.modifiedTime === null">{{ qna.creatiedTime }}</td>
             <td v-else>{{ qna.modifiedTime }}</td>
-            <td>{{ qna.title }}</td>
+            <td><button type="button" class="qnaBtn" @click="returnID(qna.id)">{{ qna.title }}</button></td>
             <td>{{ qna.userId }}</td>
         </tr>
         </table>
@@ -116,10 +116,26 @@ var qnalist = {
             다음
         </button>
         </div>
+    </div>
+    <div v-else class="landmark">
+        <li v-for="l in listArray">
+            <div v-if="qnaid === l.id">
+                <div class="title">{{ l.title }}</div>
+                <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
+                <div class="time" v-else>{{ l.modifiedTime }}</div>
+                <hr class="line">
+                <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="landmarkImg">
+                <img v-else src="l.firstImage">
+                <div class="content">{{ l.overview }}</div>
+                <button type="button" @click="returnList">목록</button>
+            </div>
+        </li>
     </div>`,
     data() {
         return {
-            pageNum: 0
+            pageNum: 0,
+            isshown: false,
+            qnaid: 0
         }
     },
     props: {
@@ -139,6 +155,14 @@ var qnalist = {
         },
         prevPage() {
             this.pageNum -= 1;
+        },
+        returnID: function (value) {
+            this.qnaid = value;
+            this.isshown = true;
+        },
+        returnList: function () {
+            this.qnaid = 0;
+            this.isshown = false;
         }
     },
     computed: {
@@ -205,7 +229,7 @@ var qna = new Vue({
     created: function() {
         axios.post('http://49.50.161.45:8080/qna/search')
         .then(res => {
-            //console.log(res);
+            console.log(res);
             this.qnalist = (res.data);
         }).catch (ex => {
             console.log(ex);
