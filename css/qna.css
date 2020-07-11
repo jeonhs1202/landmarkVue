@@ -36,14 +36,23 @@
     right: 20px;
 }
 .createbtn{
-    background-color: rgb(231, 231, 231);
-    border-radius: 10px;
-    color: rgb(71, 71, 71);
-    width: 80px;
-    height: 30px;
-    font-size: 16px;
-    border: 1px solid rgb(189, 189, 189);
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    width: 6rem;
+    height: 2rem;
+    border: 0px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: rgb(129, 168, 146);
+    color: white;
 }
+
+.createbtn:hover {
+  background-color: white;
+  color: rgb(129, 168, 146);
+  border: solid 1.5px rgb(129, 168, 146);
+}
+
 .modal-mask-qna {
     position: fixed;
     z-index: 9998;
@@ -115,6 +124,10 @@
     font-weight: bold;
     background-color: #ffff;
     color: rgb(129, 168, 146);
+}
+
+.model-save-qna button:hover{
+  color: #006400;
 }
 
 .qna-textarea{
@@ -197,11 +210,11 @@
 }
 
 .btn-cover .page-btn {
-  width: 5rem;
+  width: 4rem;
   height: 2rem;
   letter-spacing: 0.5px;
   border: 0px;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
   background-color: rgb(129, 168, 146);
   color: white;
@@ -260,12 +273,15 @@
 .landmark button {
   letter-spacing: 1px;
   border: 0px;
-  font-size: 15px;
+  width: 4rem;
+  height: 2rem;
+  font-size: 17px;
   font-weight: bold;
   background-color: rgb(129, 168, 146);
   color: white;
   border-radius: 5px 5px 5px 5px;
-  margin-left: 150px;
+  position: absolute;
+  right: 120px;
 }
 
 .landmark button:hover {

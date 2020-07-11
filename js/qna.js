@@ -120,6 +120,7 @@ var qnalist = {
     <div v-else class="landmark">
         <li v-for="l in listArray">
             <div v-if="qnaid === l.id">
+                <button type="button" @click="returnList">목록</button>
                 <div class="title">{{ l.title }}</div>
                 <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
                 <div class="time" v-else>{{ l.modifiedTime }}</div>
@@ -127,7 +128,6 @@ var qnalist = {
                 <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="qnaImg">
                 <img v-else src="l.firstImage">
                 <div class="content">{{ l.content }}</div>
-                <button type="button" @click="returnList">목록</button>
             </div>
         </li>
     </div>`,
