@@ -53,13 +53,13 @@ var myTrip = new Vue({
             this.itemId = parseInt(vars[1]);
         }
         axios.post('http://49.50.161.45:8080/review/search', {
-            type: 0
+            type: 1
         }, {
             headers: {
                 'auth-token': window.localStorage.getItem('token')
             }
         }).then(res => {
-            //console.log(res);
+            //console.log(res.data);
             this.content = (res.data);
         });
     },

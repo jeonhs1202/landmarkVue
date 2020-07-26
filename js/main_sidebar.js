@@ -3,16 +3,7 @@ var menu = {
                     <li>
                     <div class="logo">My History</div>
                     </li>
-                    <div v-for="item in items" v-if="itemid != 0">
-                        <li v-if="itemid === item.areaCode">
-                            <a v-bind:href="'myTrip.html?id='+item.id"><button class="item">
-                                <div class="location">
-                                    <img src="../img/location.png" class="locImg">{{ item.title }} {{ item.overview }}
-                                </div>
-                            </button></a>
-                        </li>
-                    </div>
-                    <div v-for="item in items" v-else>
+                    <div v-for="item in items">
                         <li>
                         <a v-bind:href="'myTrip.html?id='+item.id"><button class="item">
                             <div class="location">
@@ -43,9 +34,7 @@ var sideBar = new Vue({
         }
         const baseURI = 'http://49.50.161.45:8080/review'
         if(this.areaCode != 0){
-            axios.post(`${baseURI}/search`, {
-                type: 0
-            },{
+            axios.get(`${baseURI}/names/${this.areaCode}`, {
                 headers: {
                     'auth-token': window.localStorage.getItem('token')
                 }
@@ -60,7 +49,7 @@ var sideBar = new Vue({
                 }
             }).then(res => {
                 this.history = (res.data);
-                //console.log(res.data);
+                console.log(this.history);
             });
         }
     },
