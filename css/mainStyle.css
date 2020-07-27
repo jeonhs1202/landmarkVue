@@ -84,14 +84,19 @@
     bottom: 70px;
 }
 .plusbtn{
-    background-color: rgb(242, 250, 225);
     border-radius: 30px;
-    color: rgb(163, 180, 161);
-    width: 100px;
+    width: 120px;
     height: 40px;
     font-size: 18px;
+    border: none;
     font-weight: bold;
-    border: 1px solid rgb(189, 189, 189);
+    background-color: rgb(129, 168, 146);
+    color: white;
+}
+
+.plusbtn:hover {
+    background-color: white;
+    color: rgb(129, 168, 146);
 }
 
 .modal-mask {
