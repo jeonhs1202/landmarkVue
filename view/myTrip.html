@@ -18,11 +18,16 @@
 
         <div id="_mytrip">
             <div class="sideBar">
-                <side-bar v-bind:items="content" v-bind:btnid="itemId" v-on:pass="showMyTrip"></side-bar>
+                <side-bar v-bind:items="content" v-bind:btnid="itemId" v-on:pass="showMyTrip" v-on:click="clickMenu"></side-bar>
             </div>
             <div class="contentPage1">
                 <my-trip v-bind:triplist="content" v-bind:tripid="itemId"></my-trip>
             </div>
+            <div class="plusbutton" v-show="isClicked">
+                <button class="plusbtn" id="show-modal" @click="showModal = true">
+                    여행지 수정</button>
+            </div>
+            <modify v-if="showModal" @close="showModal = false"></modify>
         </div>       
     </div>
     <div id="_footer">
