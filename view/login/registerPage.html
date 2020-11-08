@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landmark</title>
-    <link rel="stylesheet" type="text/css" href="/css/registerPage.css">
+    <link rel="stylesheet" type="text/css" href="../../css/registerPage.css">
 </head>
 <body>
     <div id="_container" class="container">
         <div class="logo-wrapper">
-            <img class="logo" src="/img/logo2.png">
+            <img class="logo" src="../../img/logo2.png">
         </div>
         <div class="register-form">
             <validation-observer ref="form">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="level2">
                     <label class="lv2Label">저는 관광지를 운영합니다.</label>
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="checked">
                     <div class="level2-form">
                         <div class="level2-left">
                             <div class="form-group">
@@ -189,7 +189,9 @@
                     iscert: false,
                     certnum: '',
                     clickcert: false,
-                    certcomplete: false
+                    certcomplete: false,
+                    checked: false,
+                    role: 0
                 }
             },
             created: function () {
@@ -218,21 +220,25 @@
                         if(!success){
                             return;
                         }
+                        if(this.checked)
+                            this.role = 1;
                         axios.post('http://49.50.161.45:8080/users', {
                             username: this.username,
                             password: this.password,
                             name: this.name,
-                            email: this.email
+                            email: this.email,
+                            roleType: this.role
                         })
                         .then(res => {
                             console.log(res.data);
                             alert('회원가입이 완료되었습니다.');
-                            location.href = 'loginPage.html';
+                            //location.href = 'loginPage.html';
                         }).catch(ex => {
                             console.log(ex);
                             alert('인증번호 전송에 실패했습니다.');
                             this.clickcert = false;
                             this.certcomplete = false;
+                            this.checked = false;
                         });
                     })
                     }
