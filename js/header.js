@@ -63,7 +63,7 @@ var headItem = {
         userrole: function(){
             var temp = window.localStorage.getItem('authrole');
             if (temp==="ROLE_ADMIN" || temp ==="ROLE_DEV"){return true;}
-            else{return false;};
+            else{return false;}
         }
     },
     components: {

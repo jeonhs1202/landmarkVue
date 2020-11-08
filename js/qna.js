@@ -1,41 +1,31 @@
 var qnabar = {
     props: {
-        type: String,
-        typelist: [],
         who: String,
         what: String,
     },
     template:
         `<div class="searchBar2">
         <div class="searchBarItem">
-            <select v-model="type">
-                <option disabled value="">분류</option>
-                <option v-for="type in typelist">{{ type }}</option>
-            </select>
             <select v-model="who">
                 <option disabled value="">검색 범위</option>
                 <option>작성자</option>
                 <option>제목</option>
             </select>
             <input type="text" v-model="what" placeholder="검색어를 입력하세요">
-            <button v-on:click="passData(type, who, what)">검색</button>
+            <button v-on:click="passData(who, what)">검색</button>
         </div>
     </div>
     `,
     methods: {
-        passData: function (type, who, what) {
+        passData: function ( who, what) {
             if (event)
-                this.$emit('type', type);
-            this.$emit('who', who);
-            this.$emit('what', what);
+                this.$emit('who', who);
+                this.$emit('what', what);
         }
     }
 }
 
 var addqna = {
-    props: {
-        typelist: [],
-    },
     template:
         `<transition name="modal">
         <div class="modal-mask-qna">
@@ -46,15 +36,6 @@ var addqna = {
                     </div>
                     <div>
                         <table class = "modal-table-qna">
-                            <tr>
-                                <th>분류</th>
-                                <td>
-                                    <select v-model="type" style="height: 28px;">
-                                        <option disabled value="">분류</option>
-                                        <option v-for="type in typelist">{{ type }}</option>
-                                    </select>   
-                                </td>
-                            </tr>
                             <tr>
                                 <th>제목</th>
                                 <td><input type="text" id="title" v-model="title"></td>
@@ -69,7 +50,7 @@ var addqna = {
                     </div>
 
                     <div class = "model-save-qna">
-                        <button @click="passData(title, content); $emit('close');">작성</button>
+                        <button @click="passData(title, content);">작성</button>
                         <button @click="$emit('close')">닫기</button>
                     </div>    
                 </div>
@@ -77,16 +58,25 @@ var addqna = {
         </div>
     </transition>`,
     props: {
-        title:'',
-        content:''
+        title:String,
+        content:String,
     },
     methods: {
         passData: function (title, content) {
+            if(title.length == 0){
+                alert('제목을 입력해주세요');
+                return;
+            }
+            if(content.length == 0){
+                alert('내용을 입력해주세요');
+                return;
+            }
             if (event) {
                 this.$emit('title', title);
                 this.$emit('content', content);
                 this.$emit('pass');
             }
+            this.$emit('close');
         }
     }
 }
@@ -95,17 +85,17 @@ var qnalist = {
     template:
     `<div v-if="!isshown" class="notice">
         <table>
-        <tr>
-            <th>작성시각</th>
-            <th>제목</th>
-            <th>작성자</th>
-        </tr>
-        <tr v-for="(qna, i) in paginatedData" :key="i">
-            <td v-if="qna.modifiedTime === null">{{ qna.creatiedTime }}</td>
-            <td v-else>{{ qna.modifiedTime }}</td>
-            <td><button type="button" class="qnaBtn" @click="returnID(qna.id)">{{ qna.title }}</button></td>
-            <td>{{ qna.userId }}</td>
-        </tr>
+            <tr>
+                <th>작성시각</th>
+                <th>제목</th>
+                <th>작성자</th>
+            </tr>
+            <tr v-for="(qna, i) in paginatedData" :key="i">
+                <td v-if="qna.modifiedTime === null">{{ qna.creatiedTime }}</td>
+                <td v-else>{{ qna.modifiedTime }}</td>
+                <td><button type="button" class="qnaBtn" @click="returnID(qna.id)">{{ qna.title }}</button></td>
+                <td>{{ qna.username }}</td>
+            </tr>
         </table>
         <div class="btn-cover">
         <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
@@ -125,8 +115,6 @@ var qnalist = {
                 <div class="time" v-if="l.modifiedTime === null">{{ l.createdTime }}</div>
                 <div class="time" v-else>{{ l.modifiedTime }}</div>
                 <hr class="line">
-                <img v-if="l.firstImage == null" src="../img/temptrip.jpg" class="qnaImg">
-                <img v-else src="l.firstImage">
                 <div class="content">{{ l.content }}</div>
             </div>
         </li>
@@ -185,8 +173,6 @@ var qnalist = {
 var qna = new Vue({
     el: '#qna',
     data: {
-        type: '',
-        typelist: ['여행지 등록', '내 여행 보기', '관광지 검색', '내 관광지 관리'],
         who: '',
         what: '',
         showModal: false,
@@ -200,9 +186,6 @@ var qna = new Vue({
         'qna-list': qnalist
     },
     methods: {
-        typeset: function (value) {
-            this.type = value;
-        },
         whoset: function (value) {
             this.who = value;
         },
@@ -216,6 +199,7 @@ var qna = new Vue({
             this.content = value;
         },
         addQna: function() {
+
             axios.post('http://49.50.161.45:8080/qna', {
                 title: this.title,
                 content: this.content
@@ -224,7 +208,8 @@ var qna = new Vue({
                     'auth-token': window.localStorage.getItem('token')
                 }
             }).then(res => {
-                //console.log(res);
+                alert('문의사항이 등록되었습니다.');
+                window.location.href='qna.html';
             }).catch(ex => {
                 console.log(ex);
                 alert('문의사항 등록에 실패하였습니다.');
@@ -232,9 +217,8 @@ var qna = new Vue({
         }
     },
     created: function() {
-        axios.post('http://49.50.161.45:8080/qna/search')
+        axios.get('http://49.50.161.45:8080/qna/search')
         .then(res => {
-            //console.log(res);
             this.qnalist = (res.data);
         }).catch (ex => {
             console.log(ex);
