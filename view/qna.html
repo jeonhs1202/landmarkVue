@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="_header">
-        <header-item v-bind:name="name" v-bind:page-num='4'></header-item>
+        <header-item v-bind:name="name" v-bind:userrole="userrole" v-bind:page-num='4'></header-item>
     </div>
     <div class="whereami">
         ▷ 문의사항
@@ -20,16 +20,16 @@
         <div class="sideBar">
         </div>
         <div id="qna" class="contentPage1">
-            <qna-bar v-bind:type="type" v-bind:who="who" v-bind:what="what" v-bind:typelist="typelist"
-            v-on:type="typeset" v-on:who="whoset" v-on:what="whatset"></qna-bar>
-            {{type}} {{who}}에 있는 {{what}}을 검색합니다.            
-            <qna-list v-bind:list-array="qnalist"></qna-list>
+            <qna-bar v-bind:who="who" v-bind:what="what"
+             v-on:who="whoset" v-on:what="whatset"></qna-bar>          
             <div class="createbutton">
                 <button id="show-modal" class="createbtn" @click="showModal = true">
                 작성하기</button>
-                <add-qna v-bind:typelist="typelist" v-bind:title="title" :content="content" @pass="addQna"
+                <add-qna v-bind:title="title" v-bind:content="content" @pass="addQna"
                     v-if="showModal" @close="showModal = false" @title="titleset" @content="contentset"></add-qna>
             </div>
+            <qna-list v-bind:list-array="qnalist"></qna-list>
+            
         </div>
     </div> 
     <div id="_footer">

@@ -155,10 +155,10 @@
 }
 
 .notice table {
-  width: 1000px;
+  width: 800px;
   max-height: 380px;
   border-collapse: collapse;
-  margin: 10px auto;
+  margin: 50px auto;
 }
 
 .notice table th {
@@ -234,6 +234,7 @@
 .landmark li {
     list-style: none;
     float: left;
+    width: 90%;
     margin-left: 20px;
 }
 
