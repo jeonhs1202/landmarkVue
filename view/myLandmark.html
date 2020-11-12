@@ -13,15 +13,18 @@
     </div>
     <div class="whereami">▷ 내 관광지 관리</div>
     <div class="landmarkcontentPage">
-      <div class="sideBar"></div>
       <div id="_mylandmark" class="landmarkContent">
         <my-landmark
           v-bind:rv="review"
           v-bind:lm="landmark"
           v-bind:contents="pass"
           v-on:click="whichBtn"
-          v-bind:detail="detail"
           v-bind:id="id"
+          v-on:id="idset"
+          v-bind:city="city"
+          v-bind:sigungu="sigungu"
+          v-on:cname="cname"
+          v-on:sname="sname"
         ></my-landmark>
       </div>
     </div>

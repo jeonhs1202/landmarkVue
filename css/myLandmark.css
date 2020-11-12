@@ -1,6 +1,5 @@
 .landmarkContent {
-  margin-left: 240px;
-  margin-right: 40px;
+  width: 1300px;
   height: 100vh;
 }
 
@@ -69,23 +68,81 @@
 }
 
 .tb {
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
   margin: 20px;
+  height: 400px;
+  display: inline-block;
+}
+
+.tb thead {
+  width: 500px;
+  float: left;
+  background-color: cadetblue;
+  color: white;
+}
+
+.tb tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+  float: left;
+  height: 300px;
+  font-size: 11pt;
+}
+
+.tb tbody tr {
+  display: table;
+  width: 500px;
 }
 
 table {
-  text-align: center;
-  width: 500px;
-  border-top: 1px solid #444444;
   border-collapse: collapse;
+  width: 100%;
+  text-align: center;
 }
 
 td {
-  width: 500px;
   border-bottom: 1px solid #444444;
+}
+
+th,
+td {
   padding: 10px;
 }
 
-td:nth-child(1) {
+.tb th:nth-of-type(1) {
+  border-right: 1px solid white;
   width: 200px;
+}
+
+.tb td:nth-of-type(1) {
   border-right: 1px solid #444444;
+  width: 200px;
+}
+
+.tb th:last-child,
+.tb td:last-child {
+  width: 300px;
+}
+
+.detailBtn {
+  background-color: white;
+  border: none;
+}
+
+.detailBtn:hover {
+  color: cadetblue;
+}
+
+.detail {
+  display: inline-block;
+  margin-top: 20px;
+  width: 580px;
+  height: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
 }
