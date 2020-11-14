@@ -153,13 +153,16 @@ var myTrip = new Vue({
     },
     deleteRV: function () {
       axios
-        .delete(`http://49.50.161.45:8080/review`, {
-          id: this.id,
+        .delete(`http://49.50.161.45:8080/review/${this.id}`, {
+          headers: {
+            'auth-token': window.localStorage.getItem('token'),
+          },
         })
         .then((res) => {
           if (res.data) alert('삭제되었습니다.');
         })
-        .catch((res) => {
+        .catch((err) => {
+          console.log(err);
           alert('삭제 처리에 실패하였습니다.');
         });
     },
