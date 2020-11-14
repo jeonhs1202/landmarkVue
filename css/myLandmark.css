@@ -80,6 +80,9 @@
 .tb thead {
   width: 500px;
   float: left;
+}
+
+th {
   background-color: cadetblue;
   color: white;
 }
@@ -117,7 +120,7 @@ td {
   width: 200px;
 }
 
-.tb td:nth-of-type(1) {
+td:nth-of-type(1) {
   border-right: 1px solid #444444;
   width: 200px;
 }
@@ -145,4 +148,27 @@ td {
   background-color: white;
   border-radius: 5px;
   position: absolute;
+}
+
+hr {
+  width: 300px;
+  float: left;
+}
+
+.delBtn {
+  margin: 5px;
+  float: right;
+  border-radius: 10px;
+  width: 50px;
+  height: 25px;
+  font-size: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: cadetblue;
+  color: white;
+}
+
+.delBtn:hover {
+  background-color: beige;
+  color: cadetblue;
 }

@@ -32,13 +32,20 @@ var admin = {
               </table>
             </div>
             <div class="detail">
+              <h4>후기 상세 정보</h4>
                 <div v-for="content in contents" v-if="id === content.id">
-                  {{ city }}
-                  {{ sigungu }}
-                  작성 시각: {{ content.createdTime }}
-                  수정 시각: {{ content.modifiedTime }}
-                  제목 : {{ content.title }}
-                  내용 : {{ content.overview }}
+                  <table>
+                    <tr><th>항목</th><th></th></tr>
+                    <tr>
+                      <td>위치</td><td>{{ city }} {{ sigungu }}</td>
+                    </tr>
+                    <tr>
+                      <td>작성 시각</td><td>{{ content.createdTime }}</td></tr>
+                    <tr><td>수정 시각</td><td>{{ content.modifiedTime }}</td></tr>
+                    <tr><td>제목</td><td>{{ content.title }}</td></tr>
+                    <tr><td>내용</td><td>{{ content.overview }}</td></tr>
+                  </table>
+                  <button @click="deleteRV" class="delBtn">삭제</button>
                 </div>
             </div>
           </div>
@@ -56,6 +63,9 @@ var admin = {
       this.$emit('id', id);
       this.$emit('cname', areaCode);
       this.$emit('sname', sigunguCode);
+    },
+    deleteRV: function () {
+      this.$emit('del');
     },
   },
 };
@@ -140,6 +150,18 @@ var myTrip = new Vue({
           break;
         }
       }
+    },
+    deleteRV: function () {
+      axios
+        .delete(`http://49.50.161.45:8080/review`, {
+          id: this.id,
+        })
+        .then((res) => {
+          if (res.data) alert('삭제되었습니다.');
+        })
+        .catch((res) => {
+          alert('삭제 처리에 실패하였습니다.');
+        });
     },
   },
 });
